@@ -1,0 +1,47 @@
+1. Creating a Task
+URL: POST /
+Function: todoService.createTodo
+Explanation: This endpoint is used to create a new task. It requires a title and accepts other optional details about the task. It validates the presence of a title to ensure every task created has a minimum amount of necessary information.
+
+2. Updating a Task
+URL: PUT /:todoId
+Function: todoService.updateTodo
+Explanation: This endpoint updates an existing task identified by todoId. It requires an ID to specify which task to update and can update any of the task's properties. The presence of the ID in the request ensures that only specific tasks are targeted for updates.
+
+3. Deleting a Task
+URL: DELETE /:todoId
+Function: todoService.deleteTodo
+Explanation: This endpoint deletes a task based on its ID. The ID in the URL ensures that only the intended task is deleted, preventing accidental deletions.
+
+4. Assigning a Task
+URL: PUT /assign/:todoId
+Function: todoService.assignTodo
+Explanation: This endpoint is used to assign a task to an assignee. It requires both a task ID and an assignee in the body, ensuring that tasks are deliberately assigned to valid users.
+
+5. Getting Tasks by Assignee
+URL: GET /assignee/:assigneeId
+Function: todoService.getTodoByAssignee
+Explanation: Retrieves all tasks assigned to a specific assignee. This allows users or managers to view tasks based on assignment, which is useful for tracking workload or task distribution.
+
+6. Getting All Tasks
+URL: GET /
+Function: todoService.getAllTodos
+Explanation: This endpoint fetches all tasks. It's useful for getting an overview of all tasks in the system, aiding in broad task management and review.
+
+7. Getting Tasks for a Specific Date
+URL: GET /due/:date
+Function: todoService.getTodosForDate
+Explanation: Retrieves tasks due on a specific date. This is particularly useful for deadline management, helping users focus on time-sensitive tasks.
+
+8. Getting Overdue Tasks
+URL: GET /overdue
+Function: todoService.getOverdueTodos
+Explanation: Fetches tasks that are past their due date. This feature is crucial for identifying tasks that need urgent attention or reassignment.
+
+9. Getting a Single Task by ID
+URL: GET /:id
+Function: todoService.getTodoById
+Explanation: Retrieves the details of a single task by its ID. This is essential for viewing or editing specific tasks, allowing detailed task management on an individual level.
+These endpoints collectively provide a comprehensive API for task management, supporting a wide range of operations necessary for a robust task or project management system. Each endpoint is designed to handle a specific aspect of task management, ensuring that the system can cater to both broad and specific needs efficiently.
+
+//ToDo: add everything about the user as well
