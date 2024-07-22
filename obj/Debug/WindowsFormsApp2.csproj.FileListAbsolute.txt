@@ -1,0 +1,11 @@
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.AssemblyReference.cache
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.ToDoList.resources
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.GenerateResource.cache
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.UserForm.resources
