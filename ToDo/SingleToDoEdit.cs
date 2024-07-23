@@ -66,13 +66,14 @@ namespace MindOrgenizerToDo.ToDo
             // only let hyrarchy be crated for the same user
             //How do i let user keep the combo box empty?
             todoList = todoList.Where(task => (task.Id < item.Id)&&(task.Assignee==item.Assignee)&&(task.ParentTaskId != item.Id)).ToList();
-
+            
             Console.WriteLine("ToDoList: " + todoList.Count);
             
             this.parentTaskComboBox.DisplayMember = "Title"; // Display task title
             this.parentTaskComboBox.ValueMember = "Id"; // Use task ID as value
-
             this.parentTaskComboBox.DataSource = todoList;
+
+            this.parentTaskComboBox.SelectedValue = 0;
         }
 
 
@@ -86,7 +87,7 @@ namespace MindOrgenizerToDo.ToDo
                 Console.WriteLine("setting parent task id: " + item.ParentTaskId);
                 this.parentTaskComboBox.SelectedValue = item.ParentTaskId;
             }
-            this.statusComboBox.SelectedText = item.Status.ToString(); // Set the selected value to the status
+            this.statusComboBox.SelectedIndex = (int)item.Status; // Set the selected value to the status
         }
 
         private async void updateButton_Click(object sender, EventArgs e)

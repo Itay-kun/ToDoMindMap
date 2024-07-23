@@ -54,19 +54,28 @@ namespace MindOrgenizerToDo
             };
 
             this.userUpdateForm.Visible = false;
-            updateDates(DateTime.Now.Date);
 
             List<ToDoItem> todoList = JsonSerializer.Deserialize<List<ToDoItem>>(json, options);
 
+            updateDates(DateTime.Now.Date);
+            assigneeComboBox.Visible = false;
+
+            UpdateBubblesPanel(todoList);
+            
             if (session.isUserAdmin())
             {
                 Console.WriteLine("user is admin"); //for debug
 
                 stateComboBox.Items.Add("For User:");
                 stateComboBox.Items.Add("All");
+                
+                stateComboBox.Text = "All";
+            }
+            else
+            {
+                stateComboBox.Text = "For Me";
             }
 
-            UpdateBubblesPanel(todoList);
         }
 
         public async void updateUI()
@@ -162,6 +171,7 @@ namespace MindOrgenizerToDo
                 // Check if another bubble is already at the new location
                 bool locationOccupied = false;
 
+                
                 foreach (BubbleControl otherBubble in bubbles)
                 {
                     if ((otherBubble != bubble) && (otherBubble.Location == newLocation))
@@ -188,8 +198,8 @@ namespace MindOrgenizerToDo
                             break;
                         }
                     }
-                }
-                */
+                }*/
+                
 
                 if (locationOccupied)
                 {
@@ -306,6 +316,22 @@ namespace MindOrgenizerToDo
             dueByPicker.Text = date.AddDays(2).ToString();
         }
 
+        private long getSelectedUser()
+        {
+
+            long selectedUser;
+            if (!UserSession.GetInstance().isUserAdmin())
+            {
+                selectedUser = UserSession.id;
+            }
+            else
+            {
+                //ToDo: make sure usere selection combo box is visible and active
+                selectedUser = long.Parse(((ToDoListForm)this.ParentForm).assigneeComboBox.SelectedValue.ToString());
+            }
+            return selectedUser;
+        }
+
         public async void LoadAssignees()
         {
             //Console.WriteLine("loading assignees: ");
@@ -338,6 +364,7 @@ namespace MindOrgenizerToDo
 
         private async Task LoadAndDisplayTodos(Func<Task<HttpResponseMessage>> getTodosTask)
         {
+            //Am i doing this twice?
             HttpResponseMessage data = await getTodosTask();
 
             string json = await data.Content.ReadAsStringAsync();
@@ -377,24 +404,25 @@ namespace MindOrgenizerToDo
             UpdateBubblesPanel(todoList);
         }
 
-        private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void stateComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // שינוי הנראות של הפילטרים בהתאם לבחירה בתיבה המשולבת
             todosDtateFilter.Visible = (stateComboBox.Text == "For Date:");
-            assigneeComboBox.Visible = (stateComboBox.Text == "For User:");
 
             switch (stateComboBox.Text)
             {
                 case "All":
                     await LoadAndDisplayTodos(() => todoService.GetAllTodos());
                     break;
-                case "For User:":
+                case "For User:": //Will show only if admin
+                    {
                     assigneeComboBox.Visible = true;
-                    LoadAssignees();
+                        LoadAssignees();
+                    }
                     break;
                 case "For Me":
-                    assigneeComboBox.SelectedValue = session.getUserID();
-                    assigneeComboBox.Visible = true;
+                    long my_id = session.getUserID();
+                    await LoadAndDisplayTodos(() => todoService.GetTodoByAssignee(my_id.ToString()));
                     break;
                 case "Overdue":
                     await LoadAndDisplayTodos(() => todoService.GetOverdueTodos());
@@ -430,7 +458,9 @@ namespace MindOrgenizerToDo
 
         private async void assigneeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (session.isUserAdmin())  {stateComboBox.SelectedValue = "For User:";}
+            if (session.isUserAdmin())  {
+                stateComboBox.SelectedValue = "For User:"; 
+            };
             HttpResponseMessage data = await todoService.GetTodoByAssignee(assigneeComboBox.SelectedValue.ToString());
 
             string json = await data.Content.ReadAsStringAsync();
@@ -444,7 +474,7 @@ namespace MindOrgenizerToDo
             UpdateBubblesPanel(todoList);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void updateInfoButton_Click(object sender, EventArgs e)
         {
             try
             {

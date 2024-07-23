@@ -230,6 +230,7 @@ namespace MindOrgenizerToDo
             // 
             this.statusComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.statusComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.statusComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.statusComboBox.FormattingEnabled = true;
             this.statusComboBox.Items.AddRange(new object[] {
             "TODO",
@@ -284,6 +285,8 @@ namespace MindOrgenizerToDo
             // assigneeComboBox
             // 
             this.assigneeComboBox.DisplayMember = "Name";
+            this.assigneeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.assigneeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.assigneeComboBox.FormattingEnabled = true;
             this.assigneeComboBox.Location = new System.Drawing.Point(258, 9);
             this.assigneeComboBox.Name = "assigneeComboBox";
@@ -318,8 +321,8 @@ namespace MindOrgenizerToDo
             // 
             // stateComboBox
             // 
-            this.stateComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.stateComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.stateComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.stateComboBox.FormattingEnabled = true;
             this.stateComboBox.Items.AddRange(new object[] {
             "Overdue",
@@ -332,8 +335,7 @@ namespace MindOrgenizerToDo
             this.stateComboBox.Size = new System.Drawing.Size(121, 21);
             this.stateComboBox.TabIndex = 13;
             this.stateComboBox.Tag = "todo_status";
-            this.stateComboBox.Text = "For Me";
-            this.stateComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.stateComboBox.SelectedIndexChanged += new System.EventHandler(this.stateComboBox_SelectedIndexChanged);
             // 
             // updateUserInfoButton
             // 
@@ -343,7 +345,7 @@ namespace MindOrgenizerToDo
             this.updateUserInfoButton.TabIndex = 17;
             this.updateUserInfoButton.Text = "Update Login Info";
             this.updateUserInfoButton.UseVisualStyleBackColor = false;
-            this.updateUserInfoButton.Click += new System.EventHandler(this.button1_Click);
+            this.updateUserInfoButton.Click += new System.EventHandler(this.updateInfoButton_Click);
             // 
             // bubblesPanel
             // 
