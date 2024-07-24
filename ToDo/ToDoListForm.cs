@@ -136,6 +136,7 @@ namespace MindOrgenizerToDo
 
             // Clear existing controls
             bubblesPanel.Controls.Clear();
+            connectionsManager = new ConnectionsManager(bubblesPanel);
 
             // Group tasks by ParentTaskId
             var groupedTasks = tasks.GroupBy(t => t.ParentTaskId);
@@ -149,7 +150,7 @@ namespace MindOrgenizerToDo
                 var bubble = task.ToBubble();
 
                 // Calculate the offset based on the todo_item's Level
-                int offsetX = (bubble.Width + bubblePadding) * task.Level;
+                int offsetX = (bubble.Width/2 * task.Level) + bubblePadding;
                 int posY = y;
 
                 if (!bubblePositions.ContainsKey(bubble))
@@ -167,6 +168,12 @@ namespace MindOrgenizerToDo
                     {
                         Console.WriteLine("positioning child "+i+" of task "+task.Id); 
                         SetBubblePosition(childTasks[i], childX, childY);
+
+                        bubble.DrawArrowToTarget(childTasks[i].bubble);
+
+                        //visually connect the children
+                        connectionsManager.AddConnection(task.ToBubble(), childTasks[i].ToBubble());
+
                         childY += (childTasks.Count > 1 ? bubble.Height + spaceBetweenUnrelatedTasks : 0);
                     }
                 }
@@ -196,20 +203,20 @@ namespace MindOrgenizerToDo
             // Add the BubbleControls to the panel
             foreach (var kvp in bubblePositions)
             {
-                var bubble = kvp.Key;
-                var position = kvp.Value;
+                BubbleControl bubble = kvp.Key;
+                Point position = kvp.Value;
 
                 // Check for overlaps and shift if necessary
                 bool hasOverlap;
                 do
                 {
                     hasOverlap = false;
-                    foreach (var otherBubble in bubblePositions.Keys)
+                    foreach (BubbleControl otherBubble in bubblePositions.Keys)
                     {
                         if (bubble != otherBubble)
                         {
-                            var bubbleRect = new Rectangle(position, bubble.Size);
-                            var otherBubbleRect = new Rectangle(bubblePositions[otherBubble], otherBubble.Size);
+                            Rectangle bubbleRect = new Rectangle(position, bubble.Size);
+                            Rectangle otherBubbleRect = new Rectangle(bubblePositions[otherBubble], otherBubble.Size);
                             if (bubbleRect.IntersectsWith(otherBubbleRect))
                             {
                                 position.Y += bubble.Height + bubblePadding;
@@ -224,19 +231,6 @@ namespace MindOrgenizerToDo
                 bubblesPanel.Controls.Add(bubble);
             }
         }
-
-        // Function to print the current state of bubblePositions
-        private void PrintBubblePositions(Dictionary<BubbleControl, Point> bubblePositions)
-        {
-            Console.WriteLine("Bubble Positions:");
-            foreach (var kvp in bubblePositions)
-            {
-                Console.WriteLine($"{kvp.Key.Text}: {kvp.Value}");
-            }
-        }
-
-
-
 
         private void LayoutBubbles(Control.ControlCollection bubbles)
         {

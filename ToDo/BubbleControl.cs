@@ -257,7 +257,7 @@ public class BubbleControl : UserControl
         if (e.Data.GetDataPresent(typeof(BubbleControl)))
         {
             e.Effect = DragDropEffects.Link;
-            Console.WriteLine("BubbleControl_DragEnter " + sender.GetType()+" "+sender.ToString());
+            //Console.WriteLine("BubbleControl_DragEnter " + sender.GetType()+" "+sender.ToString());
         }
         else
         {
@@ -280,14 +280,15 @@ public class BubbleControl : UserControl
         }
     }
 
-    private Point GetCenterPoint() { 
+    public Point GetCenterPoint() { 
         return new Point(this.Location.X + this.Width / 2, this.Location.Y + this.Height / 2); 
     }
 
     private void DrawArrow(BubbleControl source, BubbleControl target)
     {
+        if (source == null || target == null) return;
         Console.WriteLine("draw arrow from "+source.Name + " to " + target.Name);
-        var panel = this.Parent as Panel;  // Assuming the Parent of bubbles is a Panel
+        var panel = this.Parent as Panel;
 
         Graphics g = panel.CreateGraphics();
         Pen pen = new Pen(Color.Black, 2);
@@ -295,13 +296,13 @@ public class BubbleControl : UserControl
 
         // Calculate center points of source and target for line drawing
         Point sourceCenter = source.GetCenterPoint();
-        Point targetCenter = new Point(target.Location.X + target.Width / 2, target.Location.Y + target.Height / 2);
+        Point targetCenter = target.GetCenterPoint();
 
         g.DrawLine(pen, sourceCenter, targetCenter);
         g.Dispose();
     }
 
-    private void DrawArrowToTarget(BubbleControl target)
+    public void DrawArrowToTarget(BubbleControl target)
     {
         DrawArrow(this, target);
     }
