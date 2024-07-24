@@ -55,7 +55,7 @@ namespace MindOrgenizerToDo
             this.panel8 = new System.Windows.Forms.Panel();
             this.assigneeComboBox = new System.Windows.Forms.ComboBox();
             this.todosDtateFilter = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
+            this.titleTasksToSee = new System.Windows.Forms.Label();
             this.stateComboBox = new System.Windows.Forms.ComboBox();
             this.updateUserInfoButton = new System.Windows.Forms.Button();
             this.bubblesPanel = new System.Windows.Forms.Panel();
@@ -203,18 +203,22 @@ namespace MindOrgenizerToDo
             // 
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.startDatePicker);
-            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 24);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(310, 25);
+            this.panel3.Size = new System.Drawing.Size(325, 25);
             this.panel3.TabIndex = 11;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.dueByPicker);
-            this.panel4.Location = new System.Drawing.Point(3, 34);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(6);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(310, 24);
+            this.panel4.Padding = new System.Windows.Forms.Padding(6);
+            this.panel4.Size = new System.Drawing.Size(325, 24);
             this.panel4.TabIndex = 11;
             // 
             // panel5
@@ -273,30 +277,36 @@ namespace MindOrgenizerToDo
             // 
             // panel8
             // 
+            this.panel8.AutoSize = true;
+            this.panel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel8.Controls.Add(this.assigneeComboBox);
             this.panel8.Controls.Add(this.todosDtateFilter);
-            this.panel8.Controls.Add(this.label8);
+            this.panel8.Controls.Add(this.titleTasksToSee);
             this.panel8.Controls.Add(this.stateComboBox);
             this.panel8.Location = new System.Drawing.Point(39, 94);
+            this.panel8.MinimumSize = new System.Drawing.Size(0, 30);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(385, 38);
+            this.panel8.Padding = new System.Windows.Forms.Padding(3);
+            this.panel8.Size = new System.Drawing.Size(448, 36);
             this.panel8.TabIndex = 16;
             // 
             // assigneeComboBox
             // 
+            this.assigneeComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.assigneeComboBox.DisplayMember = "Name";
-            this.assigneeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.assigneeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.assigneeComboBox.FormattingEnabled = true;
-            this.assigneeComboBox.Location = new System.Drawing.Point(258, 9);
+            this.assigneeComboBox.Location = new System.Drawing.Point(258, 6);
             this.assigneeComboBox.Name = "assigneeComboBox";
             this.assigneeComboBox.Size = new System.Drawing.Size(112, 21);
-            this.assigneeComboBox.TabIndex = 15;
+            this.assigneeComboBox.TabIndex = 2;
             this.assigneeComboBox.ValueMember = "Id";
+            this.assigneeComboBox.Visible = false;
             this.assigneeComboBox.SelectedIndexChanged += new System.EventHandler(this.assigneeComboBox_SelectedIndexChanged);
             // 
             // todosDtateFilter
             // 
+            this.todosDtateFilter.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.todosDtateFilter.CustomFormat = "yyyy-MM-dd";
             this.todosDtateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.todosDtateFilter.Location = new System.Drawing.Point(273, 9);
@@ -304,23 +314,25 @@ namespace MindOrgenizerToDo
             this.todosDtateFilter.Name = "todosDtateFilter";
             this.todosDtateFilter.ShowUpDown = true;
             this.todosDtateFilter.Size = new System.Drawing.Size(84, 20);
-            this.todosDtateFilter.TabIndex = 14;
+            this.todosDtateFilter.TabIndex = 2;
             this.todosDtateFilter.Value = new System.DateTime(2024, 5, 8, 0, 0, 0, 0);
             this.todosDtateFilter.Visible = false;
             this.todosDtateFilter.ValueChanged += new System.EventHandler(this.todosDtateFilter_ValueChanged);
             // 
-            // label8
+            // titleTasksToSee
             // 
-            this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label8.Location = new System.Drawing.Point(5, 8);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(122, 20);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "I Should See the tasks ";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.titleTasksToSee.Dock = System.Windows.Forms.DockStyle.Left;
+            this.titleTasksToSee.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.titleTasksToSee.Location = new System.Drawing.Point(3, 3);
+            this.titleTasksToSee.Name = "titleTasksToSee";
+            this.titleTasksToSee.Size = new System.Drawing.Size(122, 30);
+            this.titleTasksToSee.TabIndex = 2;
+            this.titleTasksToSee.Text = "I Should See the tasks ";
+            this.titleTasksToSee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // stateComboBox
             // 
+            this.stateComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.stateComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.stateComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.stateComboBox.FormattingEnabled = true;
@@ -330,10 +342,10 @@ namespace MindOrgenizerToDo
             "For Today",
             "For Date:",
             "For Me"});
-            this.stateComboBox.Location = new System.Drawing.Point(123, 9);
+            this.stateComboBox.Location = new System.Drawing.Point(131, 6);
             this.stateComboBox.Name = "stateComboBox";
             this.stateComboBox.Size = new System.Drawing.Size(121, 21);
-            this.stateComboBox.TabIndex = 13;
+            this.stateComboBox.TabIndex = 1;
             this.stateComboBox.Tag = "todo_status";
             this.stateComboBox.SelectedIndexChanged += new System.EventHandler(this.stateComboBox_SelectedIndexChanged);
             // 
@@ -435,7 +447,7 @@ namespace MindOrgenizerToDo
         private Panel bubblesPanel;
         private DateTimePicker dueByPicker;
         private Panel panel8;
-        private Label label8;
+        private Label titleTasksToSee;
         private ComboBox stateComboBox;
         private DateTimePicker todosDtateFilter;
         public ComboBox assigneeComboBox;

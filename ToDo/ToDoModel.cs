@@ -30,7 +30,8 @@ namespace MindOrgenizerToDo
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonPropertyName("parent_task_id")]
+        //[JsonPropertyName("parent_task_id")]
+        [JsonPropertyName("parentTaskId")]
         public long ParentTaskId { get; set; }
 
         [JsonPropertyName("assignee")]
@@ -72,6 +73,8 @@ namespace MindOrgenizerToDo
             EndDate = endDate;
             Status = status; //Initialize the task as not compleated
             Level = level;
+
+            Console.WriteLine("Created: "+this.ToString());
         }
 
         public override string ToString()

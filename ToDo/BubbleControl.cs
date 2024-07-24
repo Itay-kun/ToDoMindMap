@@ -65,6 +65,9 @@ public class BubbleControl : UserControl
         this.titleLabel = new System.Windows.Forms.Label();
         this.titleLabel.Padding = new System.Windows.Forms.Padding(0, this.Height/3, 3, 0);
         
+        this.Height = 147;
+        this.Width = this.Height;
+        
         this.titleLabel.AutoSize = true;
         this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
         this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -110,8 +113,6 @@ public class BubbleControl : UserControl
         this.Name = "Task "+Item.Id.ToString()+" Bubble";
         this.ResumeLayout(false);
         UpdateColorBasedOnStatus();
-        
-        //this.Location = new Point(this.Item.Level * this.Width + 20, 0); Console.WriteLine(this.Item.Title+" Location: " + this.Location+" Level: " + this.Item.Level);
 
         this.PerformLayout();
 
@@ -300,6 +301,11 @@ public class BubbleControl : UserControl
         g.Dispose();
     }
 
+    private void DrawArrowToTarget(BubbleControl target)
+    {
+        DrawArrow(this, target);
+    }
+
     private void BubbleControl_DragDrop(object sender, DragEventArgs e)
     {
         var target = sender as BubbleControl;  // The bubble where the mouse was released
@@ -317,9 +323,8 @@ public class BubbleControl : UserControl
 
     private void BubbleControl_LocationChanged(object sender, EventArgs e)
     {
-        Console.WriteLine(e.GetType());
         Console.WriteLine("BubbleControl | Location Changed");
-        this.Refresh();
+        Console.WriteLine(e);
     }
 
     private void BubbleControl_Move(object sender, EventArgs e)
@@ -329,8 +334,9 @@ public class BubbleControl : UserControl
 
     private void BubbleControl_Paint(object sender, PaintEventArgs e)
     {
-        Control currentControl = sender as Control;
-        Control ref_control = sender as Control;
+        /*
+        BubbleControl currentControl = sender as BubbleControl;
+        Control ref_control = sender as BubbleControl;
 
         if (currentControl == null)
             return;
@@ -342,7 +348,7 @@ public class BubbleControl : UserControl
             if (control != currentControl && control.Bounds.IntersectsWith(currentControl.Bounds))
             {
                 ref_control = control;
-                isOverlapping = true;
+                currentControl.isOverlapping = true;
                 Console.WriteLine(); 
                 Console.Write(currentControl.Name + " was Overlapping "+ control.Name);
                 break;
@@ -363,7 +369,7 @@ public class BubbleControl : UserControl
             // Handle the non-overlap scenario
             Console.WriteLine(bubble.Item.Title + " Not Overlapping");
             //e.Graphics.DrawString("Not Overlapping", currentControl.Font, Brushes.Green, new PointF(10, 10));
-        }
+        }*/
     }
 
 }
