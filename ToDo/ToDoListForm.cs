@@ -120,33 +120,6 @@ namespace MindOrgenizerToDo
                 Console.WriteLine("ToDoListForm | UpdateBubblesPanel | Parent task is "+todo.ParentTaskId.ToString());
             }
 
-            /*
-            bubblesPanel.Controls.Clear();
-
-            // Create a dictionary to store the tasks by their ID for easy lookup
-            Dictionary<long, BubbleControl> taskDict = new Dictionary<long, BubbleControl>();
-
-            
-            foreach (var todo in todoList)
-            {
-                BubbleControl bubble = new BubbleControl(todo, new Point(10, 10));
-                taskDict[todo.Id] = bubble;
-            }
-
-            // Arrange tasks with parent-child relationships
-            foreach (var bubble in taskDict.Values)
-            {
-                if (bubble.Item.ParentTaskId != 0 && taskDict.ContainsKey(bubble.Item.ParentTaskId))
-                {
-                    Console.WriteLine("ToDoListForm | UpdateBubblesPunel | showld draw the arrows from here?");
-                    taskDict[bubble.Item.ParentTaskId].AddChildTask(bubble.Item);
-                }
-                else
-                {
-                    bubblesPanel.Controls.Add(bubble);
-                }
-            }*/
-
             // Layout the bubbles
             //foreach (ToDoItem todo_item in todoList) { Console.WriteLine("task " + todo_item.Id + "'s parent task is " + todo_item.ParentTaskId); };
             LayoutBubbles(tasks: todoList, bubblesPanel: bubblesPanel);
@@ -160,8 +133,6 @@ namespace MindOrgenizerToDo
             // Define the necessary spacing and padding
             int spaceBetweenUnrelatedTasks = 60;
             int bubblePadding = 10;
-
-            //foreach(ToDoItem todo_item in tasks) { Console.WriteLine("task "+todo_item.Id+"'s parent task is "+todo_item.ParentTaskId);};
 
             // Clear existing controls
             bubblesPanel.Controls.Clear();

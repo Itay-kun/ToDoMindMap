@@ -80,7 +80,6 @@
     </Compile>
     <Compile Include="ToDo\Connectors\ConectionsManager.cs" />
     <Compile Include="ToDo\Connectors\Connection.cs" />
-    <Compile Include="ToDo\TaskHierarchyBuilder.cs" />
     <Compile Include="ToDo\SingleToDoEdit.cs">
       <SubType>Form</SubType>
     </Compile>
