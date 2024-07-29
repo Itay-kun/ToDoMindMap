@@ -271,6 +271,7 @@ public class BubbleControl : UserControl
         if (e.Data.GetDataPresent(typeof(BubbleControl)))
         {
             e.Effect = DragDropEffects.Link;  // Continue to allow linking here
+            Console.WriteLine($"DragOver on {this.Name}");
         }
         else
         {
@@ -287,6 +288,7 @@ public class BubbleControl : UserControl
     private void DrawArrow(BubbleControl source, BubbleControl target)
     {
         if (source == null || target == null) return;
+        Console.WriteLine($"Drawing arrow from {source.Name} to {target.Name}");
         Console.WriteLine("draw arrow from "+source.Name + " to " + target.Name);
         var panel = this.Parent as Panel;
 
@@ -315,6 +317,7 @@ public class BubbleControl : UserControl
         if (target != null && source != null && target != source)
         {
             // Execute your linking logic here
+            Console.WriteLine($"DragDrop from {source.Name} to {target.Name}");
             ((ToDoListForm)this.ParentForm).connectionsManager.ConnectBubbles(source, target);
             Console.WriteLine("Connecting "+target.Name + " to " + source.Name);
             Console.WriteLine(target.Item.Id + " to " + source.Item.Id);
@@ -335,42 +338,7 @@ public class BubbleControl : UserControl
 
     private void BubbleControl_Paint(object sender, PaintEventArgs e)
     {
-        /*
-        BubbleControl currentControl = sender as BubbleControl;
-        Control ref_control = sender as BubbleControl;
-
-        if (currentControl == null)
-            return;
-        
-        BubbleControl bubble = sender as BubbleControl;
-
-        foreach (Control control in currentControl.Parent.Controls)
-        {
-            if (control != currentControl && control.Bounds.IntersectsWith(currentControl.Bounds))
-            {
-                ref_control = control;
-                currentControl.isOverlapping = true;
-                Console.WriteLine(); 
-                Console.Write(currentControl.Name + " was Overlapping "+ control.Name);
-                break;
-            }
-            if(!this.isOverlapping) break;
-        }
-
-        if (isOverlapping)
-        {
-            // Handle the overlap scenario
-            //e.Graphics.DrawString("Overlapping", currentControl.Font, Brushes.Red, new PointF(10, 10));
-            currentControl.Location = new Point(ref_control.Location.Y + ref_control.Height, 10);
-            this.isOverlapping = false;
-            Console.Write("but it was moved"); Console.WriteLine(); 
-        }
-        else
-        {
-            // Handle the non-overlap scenario
-            Console.WriteLine(bubble.Item.Title + " Not Overlapping");
-            //e.Graphics.DrawString("Not Overlapping", currentControl.Font, Brushes.Green, new PointF(10, 10));
-        }*/
+        Console.WriteLine("bubble control paint");
     }
 
 }

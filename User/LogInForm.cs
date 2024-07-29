@@ -45,7 +45,7 @@ namespace MindOrgenizerToDo
                 //TODO: Add error handling for when server is not running, maybe ping the server on app start?
                 if (response.IsSuccessStatusCode)
                 {
-                    this.lgoinButton.Enabled = false;
+                    this.loginButton.Enabled = false;
                     this.WindowState = FormWindowState.Minimized;
                     UserSession session = UserSession.GetInstance(emailTextBox.Text);
                     
@@ -115,6 +115,24 @@ namespace MindOrgenizerToDo
         private void UserForm_Load(object sender, EventArgs e)
         {
             userInfoPanel.BackColor = Color.FromArgb(150, 10, 10, 10);
+        }
+
+        private void textBoxUserName_TextChanged(object sender, EventArgs e)
+        {
+            bool canRegister = (textBoxUserName.Text.Trim().Length > 0);
+            registerButton.Enabled = canRegister;
+        }
+
+        private void textBoxUserName_Enter(object sender, EventArgs e)
+        {
+            bool canRegister = (textBoxUserName.Text.Trim().Length > 0);
+            registerButton.Enabled = canRegister;
+        }
+
+        private void textBoxUserName_Leave(object sender, EventArgs e)
+        {
+            bool canRegister = (textBoxUserName.Text.Trim().Length > 0);
+            registerButton.Enabled = canRegister;
         }
     }
 }

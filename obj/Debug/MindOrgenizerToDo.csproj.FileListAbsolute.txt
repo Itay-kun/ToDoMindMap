@@ -24,3 +24,9 @@ M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMi
 M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\MindOrge.17AB8A15.Up2Date
 M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\MindOrgenizerToDo.exe
 M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\MindOrgenizerToDo.pdb
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\aa\MindOrgenizerToDo.resources.dll
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\bin\Debug\he-IL\MindOrgenizerToDo.resources.dll
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\MindOrgenizerToDo.ToDoListForm.aa.resources
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\MindOrgenizerToDo.ToDoListForm.he-IL.resources
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\aa\MindOrgenizerToDo.resources.dll
+M:\My Drive\לימודים\2024\סדנה בתכנות מונחה עצמים\ToMindMap\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\he-IL\MindOrgenizerToDo.resources.dll

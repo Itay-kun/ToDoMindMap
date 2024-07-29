@@ -114,6 +114,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ToDo\ToDoListForm.aa.resx">
+      <DependentUpon>ToDoListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToDo\ToDoListForm.he-IL.resx">
+      <DependentUpon>ToDoListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToDo\ToDoListForm.resx">
       <DependentUpon>ToDoListForm.cs</DependentUpon>
     </EmbeddedResource>

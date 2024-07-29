@@ -47,23 +47,10 @@ namespace MindOrgenizerToDo
         private void ToDoListWindow_Load(object sender, EventArgs e)
         {
             this.userUpdateForm.Visible = false;
-            /*HttpResponseMessage data = await todoService.GetAllTodos();
-            string json = await data.Content.ReadAsStringAsync();
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                Converters = { new JsonStringEnumConverter() }
-            };
-
-            List<ToDoItem> todoList = JsonSerializer.Deserialize<List<ToDoItem>>(json, options);
-
-            UpdateBubblesPanel(todoList);
-            */
+            this.assigneeComboBox.Visible = false;
 
             updateDates(DateTime.Now.Date);
-            assigneeComboBox.Visible = false;
 
-            
             
             if (session.isUserAdmin())
             {
@@ -85,17 +72,31 @@ namespace MindOrgenizerToDo
 
         public async void updateUI()
         {
-            bubblesPanel.Controls.Clear();
-            HttpResponseMessage data = await todoService.GetAllTodos();
-            string json = await data.Content.ReadAsStringAsync();
-            var options = new JsonSerializerOptions
+            switch (stateComboBox.Text)
             {
-                PropertyNameCaseInsensitive = true,
-                Converters = { new JsonStringEnumConverter() }
-            };
-
-            List<ToDoItem> todoList = JsonSerializer.Deserialize<List<ToDoItem>>(json, options);
-            UpdateBubblesPanel(todoList);
+                case "All":
+                    await LoadAndDisplayTodos(() => todoService.GetAllTodos());
+                    break;
+                case "For User:": //Will show only if admin
+                    {
+                        LoadAssignees();
+                    }
+                    break;
+                case "For Me":
+                    long my_id = session.getUserID();
+                    await LoadAndDisplayTodos(() => todoService.GetTodoByAssignee(my_id.ToString()));
+                    break;
+                case "Overdue":
+                    await LoadAndDisplayTodos(() => todoService.GetOverdueTodos());
+                    break;
+                case "For Today":
+                    string dateAsJson = DateTime.Now.ToString("yyyy-MM-dd");
+                    await LoadAndDisplayTodos(() => todoService.GetTodosForDate(dateAsJson));
+                    break;
+                case "Completed":
+                    await LoadAndDisplayCompletedTodos(() => todoService.GetAllTodos());
+                    break;
+            }
         }
 
 
@@ -121,7 +122,6 @@ namespace MindOrgenizerToDo
             }
 
             // Layout the bubbles
-            //foreach (ToDoItem todo_item in todoList) { Console.WriteLine("task " + todo_item.Id + "'s parent task is " + todo_item.ParentTaskId); };
             LayoutBubbles(tasks: todoList, bubblesPanel: bubblesPanel);
         }
 
@@ -131,7 +131,7 @@ namespace MindOrgenizerToDo
         private void LayoutBubbles(List<ToDoItem> tasks, Panel bubblesPanel)
         {
             // Define the necessary spacing and padding
-            int spaceBetweenUnrelatedTasks = 60;
+            int spaceBetweenUnrelatedTasks = 50;
             int bubblePadding = 10;
 
             // Clear existing controls
@@ -195,6 +195,7 @@ namespace MindOrgenizerToDo
                     Console.WriteLine(todo_item.ToString());
                     Console.WriteLine("task "+todo_item.Id+" has "+myChildTasks.Count()+" child tasks and it's parent task is "+todo_item.ParentTaskId+" and it's on level "+todo_item.Level);
                     */
+
                     SetBubblePosition(todo_item, initialX, initialY);
                     initialY += todo_item.ToBubble().Height + spaceBetweenUnrelatedTasks;
                 }
@@ -237,7 +238,7 @@ namespace MindOrgenizerToDo
             Console.WriteLine("ToDoListForm | LayoutBubbles: " + bubbles.Count);
             int yOffset = 10; // Initial top margin
             int xOffset = 10; // Initial left margin
-            int padding = 40;
+            int padding = 30;
 
             for (int i = 0; i < bubbles.Count; i++)
             {
@@ -277,26 +278,6 @@ namespace MindOrgenizerToDo
                     }
                 }
 
-                /*
-                foreach (BubbleControl otherBubble in bubbles)
-                {
-                    if (otherBubble != bubble)
-                    {
-                        // Create rectangles that represent the bounds of each control
-                        Rectangle bubbleRect = new Rectangle(bubble.Location, bubble.Size);
-                        Rectangle otherBubbleRect = new Rectangle(otherBubble.Location, otherBubble.Size);
-
-                        // Check if these rectangles overlap
-                        if (bubbleRect.IntersectsWith(otherBubbleRect))
-                        {
-                            locationOccupied = true;
-                            //newLocation = new Point(xOffset, bubble.Location.Y+otherBubbleRect.Height);
-                            break;
-                        }
-                    }
-                }*/
-                
-
                 if (locationOccupied)
                 {
                     yOffset += bubble.Height + 10;
@@ -317,11 +298,7 @@ namespace MindOrgenizerToDo
 
         private void UpdateBubblesPanel(List<ToDoItem> todoList)
         {
-
-           // todoList = SortToDoListByHierarchy(todoList);//Sort the items by hierarchy
-
             bubblesPanel.Controls.Clear();
-            //bubblesPanel.ControlAdded += new ControlEventHandler(bubblesPanel_ControlAdded);
 
             // Create a dictionary to store the tasks by their ID for easy lookup
             Dictionary<long, BubbleControl> taskDict = new Dictionary<long, BubbleControl>();
@@ -330,34 +307,14 @@ namespace MindOrgenizerToDo
             {
                 //Console.WriteLine();  Console.WriteLine("#################### | ToDoListForm | UpdateBubblesPanel | ####################"); Console.WriteLine();
                 Point newPoint = new Point(10, 10);
-                //BubbleControl bubble = new BubbleControl(todo, newPoint);
                 BubbleControl bubble = todo.ToBubble(newPoint);
                 bubble.TabIndex = (int)todo.Id;
                 taskDict[todo.Id] = bubble;
             }
 
-            // Arrange tasks with parent-child relationships
-            /*
-            foreach (var bubble in taskDict.Values)
-            {
-                if (bubble.Item.ParentTaskId != 0 && taskDict.ContainsKey(bubble.Item.ParentTaskId))
-                {
-                    taskDict[bubble.Item.ParentTaskId].AddChild(bubble);
-                    //Console.WriteLine("adding child to " + bubble.Item.ParentTaskId);
-                    bubblesPanel.Controls.Add(bubble);
-                    connectionsManager.AddConnection(taskDict[bubble.Item.ParentTaskId], bubble);
-                }
-                else
-                {
-                    //Console.WriteLine("ToDoListForm | adding bubble to panel | " + bubble.Item.Title);
-                    bubblesPanel.Controls.Add(bubble);
-                }
-            }*/
-
-            connectionsManager = new ConnectionsManager(bubblesPanel);
+            if (connectionsManager == null) { connectionsManager = new ConnectionsManager(bubblesPanel); }
 
             // Layout the bubbles
-            //LayoutBubbles(bubblesPanel.Controls);
             LayoutBubbles(tasks: todoList, bubblesPanel: bubblesPanel);
         }
 
@@ -460,7 +417,6 @@ namespace MindOrgenizerToDo
 
         private async Task LoadAndDisplayTodos(Func<Task<HttpResponseMessage>> getTodosTask)
         {
-            //Am i doing this twice?
             HttpResponseMessage data = await getTodosTask();
 
             string json = await data.Content.ReadAsStringAsync();
@@ -474,7 +430,6 @@ namespace MindOrgenizerToDo
             foreach (ToDoItem todo in todoList)
             {
                 ToDoItem.ToDoList.Add(todo);
-                //Todo: make sure it ignores duplicates
             }
             UpdateBubblesPanel(todoList);
         }
@@ -504,6 +459,7 @@ namespace MindOrgenizerToDo
         {
             // שינוי הנראות של הפילטרים בהתאם לבחירה בתיבה המשולבת
             todosDtateFilter.Visible = (stateComboBox.Text == "For Date:");
+            assigneeComboBox.Visible = (stateComboBox.Text == "For User:");
 
             switch (stateComboBox.Text)
             {
@@ -512,7 +468,7 @@ namespace MindOrgenizerToDo
                     break;
                 case "For User:": //Will show only if admin
                     {
-                    assigneeComboBox.Visible = true;
+                    //assigneeComboBox.Visible = true;
                         LoadAssignees();
                     }
                     break;
@@ -617,79 +573,9 @@ namespace MindOrgenizerToDo
             }
         }
 
-        private void DrawArrowToRightControl()
-        {
-            // Clear previous drawings
-            bubblesPanel.Invalidate();
-
-            // Add paint event handler if not already added
-            bubblesPanel.Paint += (sender, e) =>
-            {
-                foreach (Control source in bubblesPanel.Controls)
-                {
-                    // Find the closest control to the right of the current control
-                    Control target = FindRightControl(source);
-
-                    if (target != null)
-                    {
-                        // Draw an arrow from source to target
-                        DrawArrow(e.Graphics, source, target);
-                    }
-                }
-            };
-
-            // Trigger a repaint to show the arrows
-            bubblesPanel.Refresh();
-        }
-
-        private Control FindRightControl(Control source)
-        {
-            Control rightControl = null;
-            int minimumDistance = source.Width;
-
-            foreach (Control target in bubblesPanel.Controls)
-            {
-                if (target != source)
-                {
-                    // Check if target is to the right of the source
-                    if (target.Left > source.Right)
-                    {
-                        int distance = target.Left - source.Right;
-                        if (distance < minimumDistance)
-                        {
-                            minimumDistance = distance;
-                            rightControl = target;
-                        }
-                    }
-                }
-            }
-
-            return rightControl;
-        }
-
-
-        private void bubblesPanel_DoubleClick(object sender, EventArgs e)
-        {
-            MessageBox.Show("you've clicked on "+mouseLoacation.ToString());
-            ToDoItem newToDo = new ToDoItem(assignee:UserSession.id,id:0,parentTaskId:42,title:"new todo",description:"",startDate:DateTime.Now,dueDate:DateTime.Now,endDate:DateTime.Now,level:0,status:TodoStatus.TODO, tags:"");
-            BubbleControl newBubble = newToDo.ToBubble(mouseLoacation);
-            
-            //SingleToDoEdit detailForm = new SingleToDoEdit(newBubble.Item, this.ParentForm as ToDoListForm);  detailForm.Show();
-        }
-
         private void bubblesPanel_MouseMove(object sender, MouseEventArgs e)
         {
             mouseLoacation = e.Location;
-        }
-
-        private void bubblesPanel_Paint(object sender, PaintEventArgs e)
-        {
-            /*
-            IEnumerable<Connection> connections = connectionsManager.GetConnections();
-            foreach (Connection connection in connections)
-            {
-                connectionsManager.ConnectBubbles(connection.Source, connection.Target);
-            }*/
         }
     }
 }

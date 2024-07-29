@@ -41,9 +41,10 @@ namespace MindOrgenizerToDo.ToDo
             this.startDatePicker.Value = item.DueDate;
 
             //ToDo: add the parent task in parentTaskComboBox
-
             string todoID = this.item.Id.ToString();
+            
             LoadAssignees();
+            this.assigneeComboBox.SelectedValue = item.Assignee;
         }
 
         private async Task LoadTasksIntoComboBox(Func<Task<HttpResponseMessage>> getTodosTask)
@@ -135,6 +136,7 @@ namespace MindOrgenizerToDo.ToDo
                     MessageBox.Show("Todo updated successfully!");
                     // Optionally refresh the UI here, if necessary
                     this.parentForm.updateUI();
+                    
                     Console.WriteLine(sender);
                     //this.Close();
                 }
@@ -228,6 +230,15 @@ namespace MindOrgenizerToDo.ToDo
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dueByPicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.dueByPicker.Value < this.startDatePicker.Value)
+            {
+                this.dueByPicker.Value = this.startDatePicker.Value.AddDays(1);
+                MessageBox.Show("Due date must be after start date.");
+            }
         }
     }
 }

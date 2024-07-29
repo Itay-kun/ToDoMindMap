@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInForm));
-            this.lgoinButton = new System.Windows.Forms.Button();
+            this.loginButton = new System.Windows.Forms.Button();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.passworddTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -48,17 +48,17 @@
             this.userInfoPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lgoinButton
+            // loginButton
             // 
-            this.lgoinButton.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.lgoinButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lgoinButton.Location = new System.Drawing.Point(205, 275);
-            this.lgoinButton.Name = "lgoinButton";
-            this.lgoinButton.Size = new System.Drawing.Size(93, 37);
-            this.lgoinButton.TabIndex = 5;
-            this.lgoinButton.Text = "Login";
-            this.lgoinButton.UseVisualStyleBackColor = false;
-            this.lgoinButton.Click += new System.EventHandler(this.loginButton_Click);
+            this.loginButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.loginButton.Location = new System.Drawing.Point(205, 275);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(93, 37);
+            this.loginButton.TabIndex = 5;
+            this.loginButton.Text = "Login";
+            this.loginButton.UseVisualStyleBackColor = false;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // emailTextBox
             // 
@@ -75,6 +75,9 @@
             this.textBoxUserName.Size = new System.Drawing.Size(205, 20);
             this.textBoxUserName.TabIndex = 2;
             this.textBoxUserName.Tag = "username";
+            this.textBoxUserName.TextChanged += new System.EventHandler(this.textBoxUserName_TextChanged);
+            this.textBoxUserName.Enter += new System.EventHandler(this.textBoxUserName_Enter);
+            this.textBoxUserName.Leave += new System.EventHandler(this.textBoxUserName_Leave);
             // 
             // passworddTextBox
             // 
@@ -166,7 +169,7 @@
             this.userInfoPanel.Controls.Add(this.panel3);
             this.userInfoPanel.Controls.Add(this.registerButton);
             this.userInfoPanel.Controls.Add(this.panel1);
-            this.userInfoPanel.Controls.Add(this.lgoinButton);
+            this.userInfoPanel.Controls.Add(this.loginButton);
             this.userInfoPanel.Location = new System.Drawing.Point(85, 71);
             this.userInfoPanel.Name = "userInfoPanel";
             this.userInfoPanel.Size = new System.Drawing.Size(396, 371);
@@ -192,7 +195,7 @@
             // registerButton
             // 
             this.registerButton.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.registerButton.Enabled = false;
             this.registerButton.Location = new System.Drawing.Point(87, 275);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(90, 37);
@@ -203,6 +206,7 @@
             // 
             // LogInForm
             // 
+            this.AcceptButton = this.loginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::MindOrgenizerToDo.Properties.Resources.background;
@@ -228,7 +232,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button lgoinButton;
+        private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.MaskedTextBox passworddTextBox;

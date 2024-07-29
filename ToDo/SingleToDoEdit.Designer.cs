@@ -84,9 +84,9 @@
             this.assigneeComboBox.DisplayMember = "Name";
             this.assigneeComboBox.Dock = System.Windows.Forms.DockStyle.Right;
             this.assigneeComboBox.FormattingEnabled = true;
-            this.assigneeComboBox.Location = new System.Drawing.Point(93, 0);
+            this.assigneeComboBox.Location = new System.Drawing.Point(113, 0);
             this.assigneeComboBox.Name = "assigneeComboBox";
-            this.assigneeComboBox.Size = new System.Drawing.Size(176, 21);
+            this.assigneeComboBox.Size = new System.Drawing.Size(156, 21);
             this.assigneeComboBox.TabIndex = 1;
             this.assigneeComboBox.ValueMember = "Id";
             // 
@@ -110,7 +110,7 @@
             this.statusPanel.Controls.Add(this.statusComboBox);
             this.statusPanel.Location = new System.Drawing.Point(27, 240);
             this.statusPanel.Name = "statusPanel";
-            this.statusPanel.Size = new System.Drawing.Size(202, 22);
+            this.statusPanel.Size = new System.Drawing.Size(248, 22);
             this.statusPanel.TabIndex = 21;
             // 
             // label6
@@ -136,9 +136,9 @@
             "TODO",
             "IN_PROGRESS",
             "COMPLETED"});
-            this.statusComboBox.Location = new System.Drawing.Point(66, 0);
+            this.statusComboBox.Location = new System.Drawing.Point(111, 0);
             this.statusComboBox.Name = "statusComboBox";
-            this.statusComboBox.Size = new System.Drawing.Size(136, 21);
+            this.statusComboBox.Size = new System.Drawing.Size(137, 21);
             this.statusComboBox.TabIndex = 4;
             this.statusComboBox.Tag = "todo_status";
             // 
@@ -192,7 +192,7 @@
             this.descriptionPanel.Controls.Add(this.descriptionTextbox);
             this.descriptionPanel.Location = new System.Drawing.Point(26, 100);
             this.descriptionPanel.Name = "descriptionPanel";
-            this.descriptionPanel.Size = new System.Drawing.Size(387, 80);
+            this.descriptionPanel.Size = new System.Drawing.Size(417, 81);
             this.descriptionPanel.TabIndex = 16;
             // 
             // label3
@@ -202,7 +202,7 @@
             this.label3.ForeColor = System.Drawing.Color.Gold;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 80);
+            this.label3.Size = new System.Drawing.Size(93, 81);
             this.label3.TabIndex = 2;
             this.label3.Text = "Description:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -213,10 +213,10 @@
             this.descriptionTextbox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
             this.descriptionTextbox.Dock = System.Windows.Forms.DockStyle.Right;
             this.descriptionTextbox.HideSelection = false;
-            this.descriptionTextbox.Location = new System.Drawing.Point(92, 0);
+            this.descriptionTextbox.Location = new System.Drawing.Point(112, 0);
             this.descriptionTextbox.Multiline = true;
             this.descriptionTextbox.Name = "descriptionTextbox";
-            this.descriptionTextbox.Size = new System.Drawing.Size(295, 80);
+            this.descriptionTextbox.Size = new System.Drawing.Size(305, 81);
             this.descriptionTextbox.TabIndex = 3;
             // 
             // titlePanel
@@ -227,7 +227,7 @@
             this.titlePanel.Controls.Add(this.titleTextBox);
             this.titlePanel.Location = new System.Drawing.Point(24, 60);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(389, 22);
+            this.titlePanel.Size = new System.Drawing.Size(419, 22);
             this.titlePanel.TabIndex = 17;
             // 
             // label2
@@ -245,9 +245,9 @@
             // titleTextBox
             // 
             this.titleTextBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.titleTextBox.Location = new System.Drawing.Point(94, 0);
+            this.titleTextBox.Location = new System.Drawing.Point(114, 0);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(295, 20);
+            this.titleTextBox.Size = new System.Drawing.Size(305, 20);
             this.titleTextBox.TabIndex = 2;
             // 
             // panel3
@@ -256,7 +256,7 @@
             this.panel3.Controls.Add(this.startDatePicker);
             this.panel3.Location = new System.Drawing.Point(-4, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(442, 25);
+            this.panel3.Size = new System.Drawing.Size(420, 25);
             this.panel3.TabIndex = 11;
             // 
             // label4
@@ -266,16 +266,18 @@
             this.label4.ForeColor = System.Drawing.Color.Gold;
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 25);
+            this.label4.Size = new System.Drawing.Size(76, 25);
             this.label4.TabIndex = 2;
             this.label4.Text = "Start Date:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // startDatePicker
             // 
+            this.startDatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.startDatePicker.CustomFormat = "yyyy-MM-dd";
             this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.startDatePicker.Location = new System.Drawing.Point(95, 0);
+            this.startDatePicker.Location = new System.Drawing.Point(115, 5);
             this.startDatePicker.Name = "startDatePicker";
             this.startDatePicker.ShowUpDown = true;
             this.startDatePicker.Size = new System.Drawing.Size(84, 20);
@@ -287,8 +289,10 @@
             this.datesPannel.Controls.Add(this.panel3);
             this.datesPannel.Controls.Add(this.panel4);
             this.datesPannel.Location = new System.Drawing.Point(27, 286);
+            this.datesPannel.Margin = new System.Windows.Forms.Padding(6);
             this.datesPannel.Name = "datesPannel";
-            this.datesPannel.Size = new System.Drawing.Size(266, 67);
+            this.datesPannel.Padding = new System.Windows.Forms.Padding(6);
+            this.datesPannel.Size = new System.Drawing.Size(416, 69);
             this.datesPannel.TabIndex = 20;
             // 
             // panel4
@@ -297,7 +301,7 @@
             this.panel4.Controls.Add(this.dueByPicker);
             this.panel4.Location = new System.Drawing.Point(-4, 34);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(181, 24);
+            this.panel4.Size = new System.Drawing.Size(420, 24);
             this.panel4.TabIndex = 11;
             // 
             // label5
@@ -314,14 +318,17 @@
             // 
             // dueByPicker
             // 
+            this.dueByPicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dueByPicker.CustomFormat = "yyyy-MM-dd";
             this.dueByPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dueByPicker.Location = new System.Drawing.Point(94, 0);
+            this.dueByPicker.Location = new System.Drawing.Point(115, 4);
             this.dueByPicker.Name = "dueByPicker";
             this.dueByPicker.ShowUpDown = true;
             this.dueByPicker.Size = new System.Drawing.Size(84, 20);
             this.dueByPicker.TabIndex = 6;
             this.dueByPicker.Value = new System.DateTime(2024, 7, 17, 0, 0, 0, 0);
+            this.dueByPicker.ValueChanged += new System.EventHandler(this.dueByPicker_ValueChanged);
             // 
             // parentTaskPanel
             // 
@@ -331,7 +338,7 @@
             this.parentTaskPanel.Controls.Add(this.parentTaskComboBox);
             this.parentTaskPanel.Location = new System.Drawing.Point(27, 199);
             this.parentTaskPanel.Name = "parentTaskPanel";
-            this.parentTaskPanel.Size = new System.Drawing.Size(322, 21);
+            this.parentTaskPanel.Size = new System.Drawing.Size(416, 21);
             this.parentTaskPanel.TabIndex = 22;
             // 
             // title_ParrentTask
@@ -342,25 +349,24 @@
             this.title_ParrentTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.title_ParrentTask.ForeColor = System.Drawing.Color.Gold;
             this.title_ParrentTask.Location = new System.Drawing.Point(0, 0);
+            this.title_ParrentTask.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.title_ParrentTask.Name = "title_ParrentTask";
-            this.title_ParrentTask.Size = new System.Drawing.Size(102, 21);
+            this.title_ParrentTask.Size = new System.Drawing.Size(112, 21);
             this.title_ParrentTask.TabIndex = 2;
             this.title_ParrentTask.Text = "Parrent Task:";
             this.title_ParrentTask.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // parentTaskComboBox
             // 
-            this.parentTaskComboBox.DisplayMember = "Title";
             this.parentTaskComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.parentTaskComboBox.ForeColor = System.Drawing.SystemColors.ControlText;
             this.parentTaskComboBox.FormattingEnabled = true;
             this.parentTaskComboBox.Location = new System.Drawing.Point(0, 0);
             this.parentTaskComboBox.Name = "parentTaskComboBox";
-            this.parentTaskComboBox.Size = new System.Drawing.Size(322, 21);
+            this.parentTaskComboBox.Size = new System.Drawing.Size(416, 21);
             this.parentTaskComboBox.Sorted = true;
             this.parentTaskComboBox.TabIndex = 3;
             this.parentTaskComboBox.Tag = "parent_task";
-            this.parentTaskComboBox.ValueMember = "Title";
             this.parentTaskComboBox.SelectedIndexChanged += new System.EventHandler(this.parrentTaskComboBox_SelectedIndexChanged);
             // 
             // backgroundPanel
