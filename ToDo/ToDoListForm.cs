@@ -9,21 +9,17 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MindOrgenizerToDo.Services;
-using MindOrgenizerToDo.ToDo;
-using MindOrgenizerToDo.ToDo.Connectors;
 using MindOrgenizerToDo.User;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
-//ToDo: add data source and data binding items to the project instead of loading everything manually, it might help with the search as well
-//ToDo: add code to detect if a todo_item's windoiw is already open and move it forward
-//ToDo: Clean repetative code
+//ToDo: add data source and data binding items to the project instead of loading everything manually, it might help for creating the search as well
+//ToDo: add code to detect if a todo_item's windoiw is already open and move it forward instead of making a new one
+
 namespace MindOrgenizerToDo
 {
     public partial class ToDoListForm : Form
     {
-        TodoService todoService = new TodoService("http://localhost:5000");
-        UserService userService = new UserService("http://localhost:5000");
+        TodoService todoService = UserSession.GetInstance().GetTodoService();
+        UserService userService = UserSession.GetInstance().GetUserService();
         UserSession session;
         Point mouseLoacation;
         HttpResponseMessage data;
@@ -33,7 +29,6 @@ namespace MindOrgenizerToDo
 
         public ToDoListForm(UserSession session)
         {
-            //Console.WriteLine("ToDoListForm: " + session.Email);
             this.session = session;
             InitializeComponent();
             DoubleBuffered = true;
@@ -73,10 +68,13 @@ namespace MindOrgenizerToDo
 
         public async void updateUI()
         {
+            TodoService todoService = UserSession.GetInstance().GetTodoService();
+
             switch (stateComboBox.Text)
             {
                 case "All":
-                    await LoadAndDisplayTodos(() => todoService.GetAllTodos());
+                    //await LoadAndDisplayTodos(() => todoService.GetAllTodos());
+                    
                     break;
                 case "For User:": //Will show only if admin
                     {
@@ -118,7 +116,6 @@ namespace MindOrgenizerToDo
 
             foreach (var todo in todoList)
             {
-                //Console.Clear();
                 Console.WriteLine("ToDoListForm | UpdateBubblesPanel | Parent task is "+todo.ParentTaskId.ToString());
             }
 
@@ -448,12 +445,10 @@ namespace MindOrgenizerToDo
                 Converters = { new JsonStringEnumConverter() }
             };
             List<ToDoItem> temp_list = JsonSerializer.Deserialize<List<ToDoItem>>(json, options);
-            List<ToDoItem> todoList = new List<ToDoItem>();
-            foreach (ToDoItem todo in temp_list)
+            List<ToDoItem> todoList = temp_list.FindAll(x => x.Status == TodoStatus.COMPLETED);
+            foreach (ToDoItem todo in todoList)
             {
-                if (todo.Status == TodoStatus.COMPLETED) {
-                todoList.Add(todo);
-                }
+               MessageBox.Show(todo.ToString());
             }
             UpdateBubblesPanel(todoList);
         }
@@ -481,13 +476,16 @@ namespace MindOrgenizerToDo
                     break;
                 case "Overdue":
                     await LoadAndDisplayTodos(() => todoService.GetOverdueTodos());
+                    bubblesPanel.Invalidate();
                     break;
                 case "For Today":
                     string dateAsJson = DateTime.Now.ToString("yyyy-MM-dd");
                     await LoadAndDisplayTodos(() => todoService.GetTodosForDate(dateAsJson));
+                    bubblesPanel.Invalidate();
                     break;
                 case "Completed":
                     await LoadAndDisplayCompletedTodos(() => todoService.GetAllTodos());
+                    bubblesPanel.Invalidate();
                     break;
             }
         }

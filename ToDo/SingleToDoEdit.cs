@@ -16,8 +16,8 @@ namespace MindOrgenizerToDo.ToDo
         private ToDoItem item;
         ToDoListForm parentForm;
 
-        TodoService todoService = new TodoService("http://localhost:5000"); //TODO: make it a singleton in user session?
-        UserService userService = new UserService("http://localhost:5000"); //TODO: make it a singleton in user session?
+        TodoService todoService = UserSession.GetInstance().GetTodoService();
+        UserService userService = UserSession.GetInstance().GetUserService();
         string todoID;
 
         public SingleToDoEdit()

@@ -152,10 +152,6 @@
   <data name="tasksFiltersPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>39, 94</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="statusComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
   <data name="assigneeComboBox.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -171,6 +167,7 @@
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tasksFiltersPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
@@ -186,6 +183,9 @@
   <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
+  <data name="startDatePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 0</value>
+  </data>
   <data name="newButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
@@ -198,14 +198,17 @@
   <data name="&gt;&gt;panel2.Name" xml:space="preserve">
     <value>panel2</value>
   </data>
+  <data name="&gt;&gt;titleTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="statusComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 7</value>
   </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>panel6</value>
+  <data name="stateComboBox.Items3" xml:space="preserve">
+    <value>For Date:</value>
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>325, 25</value>
@@ -213,11 +216,11 @@
   <data name="stateComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>131, 6</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
   <data name="panel5.Size" type="System.Drawing.Size, System.Drawing">
     <value>324, 39</value>
+  </data>
+  <data name="todosDtateFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 20</value>
   </data>
   <data name="&gt;&gt;bubblesPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -267,9 +270,6 @@
   <data name="tasksFiltersPanel.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>321, 16</value>
-  </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>39, 151</value>
   </data>
@@ -297,8 +297,8 @@
   <data name="bubblePanelBackground.Location" type="System.Drawing.Point, System.Drawing">
     <value>503, 80</value>
   </data>
-  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="newButton.Text" xml:space="preserve">
     <value>Clear</value>
@@ -311,9 +311,6 @@
   </data>
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
     <value>41, 202</value>
-  </data>
-  <data name="statusComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
   </data>
   <data name="&gt;&gt;panel6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -330,8 +327,8 @@
   <data name="&gt;&gt;todosDtateFilter.Name" xml:space="preserve">
     <value>todosDtateFilter</value>
   </data>
-  <data name="&gt;&gt;bubblesPanel.Parent" xml:space="preserve">
-    <value>bubblePanelBackground</value>
+  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -384,8 +381,8 @@
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;statusComboBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
   </data>
   <data name="userUpdateForm.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -426,11 +423,14 @@
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>panel4</value>
   </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="updateUserInfoButton.Text" xml:space="preserve">
     <value>Update Login Info</value>
   </data>
-  <data name="&gt;&gt;statusComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;bubblesPanel.Parent" xml:space="preserve">
+    <value>bubblePanelBackground</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -444,9 +444,6 @@
   <data name="stateComboBox.Items" xml:space="preserve">
     <value>Overdue</value>
   </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 80</value>
-  </data>
   <data name="&gt;&gt;datesPannel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -458,9 +455,6 @@
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>panel3</value>
-  </data>
-  <data name="newButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
   </data>
   <data name="saveButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
@@ -489,17 +483,23 @@
   <data name="tasksFiltersPanel.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
+  <data name="panel6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 289</value>
+  </data>
   <data name="&gt;&gt;startDatePicker.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="userUpdateForm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 127</value>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="stateComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 21</value>
   </data>
   <data name="panel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
+  </data>
+  <data name="&gt;&gt;statusComboBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -519,17 +519,14 @@
   <data name="&gt;&gt;panel6.Name" xml:space="preserve">
     <value>panel6</value>
   </data>
+  <data name="&gt;&gt;userUpdateForm.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;startDatePicker.Parent" xml:space="preserve">
     <value>panel3</value>
-  </data>
-  <data name="panel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="&gt;&gt;dueByPicker.Parent" xml:space="preserve">
-    <value>panel4</value>
   </data>
   <data name="&gt;&gt;assigneeComboBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -537,23 +534,20 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="userUpdateForm.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 16</value>
   </data>
   <data name="dueByPicker.CustomFormat" xml:space="preserve">
     <value>yyyy-MM-dd</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="bubblesPanel.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
-  </data>
-  <data name="&gt;&gt;dueByPicker.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="descriptionTextbox.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -564,17 +558,17 @@
   <data name="statusComboBox.Items" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="panel4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+  <data name="&gt;&gt;descriptionTextbox.Name" xml:space="preserve">
+    <value>descriptionTextbox</value>
+  </data>
+  <data name="&gt;&gt;titleTasksToSee.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="stateComboBox.Items1" xml:space="preserve">
     <value>Completed</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
   </data>
   <data name="assigneeComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 21</value>
@@ -585,8 +579,8 @@
   <data name="label6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="userUpdateForm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 481</value>
+  <data name="panel4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 6, 6, 6</value>
   </data>
   <data name="&gt;&gt;updateUserInfoButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -606,11 +600,8 @@
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 0</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 22</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 20</value>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>panel6</value>
   </data>
   <data name="titleTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>322, 20</value>
@@ -624,11 +615,14 @@
   <data name="&gt;&gt;panel5.Name" xml:space="preserve">
     <value>panel5</value>
   </data>
+  <data name="&gt;&gt;bubblePanelBackground.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="startDatePicker.CustomFormat" xml:space="preserve">
     <value>yyyy-MM-dd</value>
   </data>
-  <data name="panel6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 289</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>303, 22</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -636,14 +630,14 @@
   <data name="dueByPicker.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 0</value>
   </data>
-  <data name="&gt;&gt;bubblePanelBackground.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;panel6.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;newButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="userUpdateForm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 127</value>
+  </data>
+  <data name="&gt;&gt;userUpdateForm.Type" xml:space="preserve">
+    <value>MindOrgenizerToDo.User.UserUpdateForm, MindOrgenizerToDo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -653,9 +647,6 @@
   </data>
   <data name="&gt;&gt;panel4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tasksFiltersPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="updateUserInfoButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
@@ -678,8 +669,8 @@
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 0</value>
   </data>
-  <data name="&gt;&gt;userUpdateForm.Type" xml:space="preserve">
-    <value>MindOrgenizerToDo.User.UserUpdateForm, MindOrgenizerToDo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;newButton.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="dueByPicker.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -687,8 +678,8 @@
   <data name="&gt;&gt;tasksFiltersPanel.Name" xml:space="preserve">
     <value>tasksFiltersPanel</value>
   </data>
-  <data name="&gt;&gt;titleTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -711,11 +702,11 @@
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 20</value>
   </data>
-  <data name="&gt;&gt;descriptionTextbox.Name" xml:space="preserve">
-    <value>descriptionTextbox</value>
+  <data name="&gt;&gt;dueByPicker.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="statusComboBox.Items1" xml:space="preserve">
-    <value>IN PROGRESS</value>
+  <data name="newButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="statusComboBox.Items2" xml:space="preserve">
     <value>COMPLETED</value>
@@ -732,11 +723,14 @@
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
-  <data name="todosDtateFilter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 20</value>
+  <data name="statusComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
   </data>
   <data name="todosDtateFilter.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="&gt;&gt;todosDtateFilter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -765,6 +759,9 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Status:</value>
   </data>
+  <data name="panel4.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
   <data name="bubblePanelBackground.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -774,17 +771,20 @@
   <data name="titleTasksToSee.Text" xml:space="preserve">
     <value>I Should See the tasks </value>
   </data>
-  <data name="&gt;&gt;todosDtateFilter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="panel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Start Date:</value>
   </data>
-  <data name="&gt;&gt;bubblePanelBackground.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 8</value>
+  </data>
+  <data name="&gt;&gt;statusComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;stateComboBox.Parent" xml:space="preserve">
     <value>tasksFiltersPanel</value>
@@ -792,8 +792,8 @@
   <data name="&gt;&gt;assigneeComboBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;userUpdateForm.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>321, 16</value>
   </data>
   <data name="&gt;&gt;titleTextBox.Name" xml:space="preserve">
     <value>titleTextBox</value>
@@ -813,9 +813,6 @@
   <data name="datesPannel.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 22pt, style=Bold</value>
   </data>
@@ -834,8 +831,8 @@
   <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
     <value>325, 24</value>
   </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="userUpdateForm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 481</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -843,8 +840,11 @@
   <data name="&gt;&gt;dueByPicker.Name" xml:space="preserve">
     <value>dueByPicker</value>
   </data>
-  <data name="stateComboBox.Items3" xml:space="preserve">
-    <value>For Date:</value>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 80</value>
+  </data>
+  <data name="&gt;&gt;dueByPicker.Parent" xml:space="preserve">
+    <value>panel4</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -954,7 +954,7 @@
   <data name="&gt;&gt;panel4.Parent" xml:space="preserve">
     <value>datesPannel</value>
   </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;bubblePanelBackground.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;descriptionTextbox.Type" xml:space="preserve">
@@ -987,8 +987,8 @@
   <data name="&gt;&gt;panel3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="panel4.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="statusComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;label6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1002,17 +1002,17 @@
   <data name="&gt;&gt;panel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="userUpdateForm.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;titleTasksToSee.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tasksFiltersPanel.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="statusComboBox.Items1" xml:space="preserve">
+    <value>IN PROGRESS</value>
   </data>
   <data name="&gt;&gt;bubblePanelBackground.Name" xml:space="preserve">
     <value>bubblePanelBackground</value>
   </data>
-  <data name="startDatePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 0</value>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

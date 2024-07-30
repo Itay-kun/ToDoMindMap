@@ -78,7 +78,7 @@ namespace MindOrgenizerToDo
         public override string ToString()
         {
             Console.WriteLine("");
-            return $"Key: {Id}, Title: {Title}, Description: {Description}, " +
+            return $"Assignee: {Assignee}, Key: {Id}, Status: {Status}, Title: {Title}, Description: {Description}, " +
                    $"Level: {Level}, ParentTaskID: {ParentTaskId}, StartDate: {StartDate}, EndDate: {EndDate}";
         }
 

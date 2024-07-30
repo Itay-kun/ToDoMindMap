@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MindOrgenizerToDo.Services;
+using System;
 using System.Collections.Generic;
 
 
@@ -22,6 +23,9 @@ namespace MindOrgenizerToDo
 
         public bool IsAdmin { get; set; } //Can be private?
 
+        private TodoService _todoService { get; set; }
+        private UserService _userService { get; set; }
+
 
         /*
             * initialize it: UserSession session = UserSession.GetInstance("user@example.com");
@@ -29,9 +33,14 @@ namespace MindOrgenizerToDo
         */
         private UserSession(string email)
         {
-            Email = email;
+            this.Email = email;
+            _todoService = new TodoService("http://localhost:5000");
+            _userService = new UserService("http://localhost:5000");
         }
         
+        public TodoService GetTodoService() { return _todoService; }
+        public UserService GetUserService() { return _userService; }
+
         // Checks if the current user is an admin.
         public bool isUserAdmin()
         {
