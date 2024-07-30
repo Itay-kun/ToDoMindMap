@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 
 namespace MindOrgenizerToDo.ToDo.Connectors
 {
@@ -29,10 +28,9 @@ namespace MindOrgenizerToDo.ToDo.Connectors
 
         public void Draw(Graphics g)
         {
-            //g = g ?? Source.Parent.CreateGraphics();
-            g = g ?? Source.CreateGraphics();
-            if (g == null) { Console.ForegroundColor = System.ConsoleColor.Red; Console.WriteLine("graphic context is null"); }
             if (Source == null || Target == null) return;
+            this.g = g ?? Source.CreateGraphics();
+            if (g == null) { Console.ForegroundColor = System.ConsoleColor.Red; Console.WriteLine("graphic context is null"); }
             //Console.WriteLine("Redrawing connection between " + Source.Name + " and " + Target.Name);
 
             Point sourceCenter = Source.GetCenterPoint();
