@@ -1,13 +1,6 @@
 ﻿using MindOrgenizerToDo.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MindOrgenizerToDo.User
@@ -42,9 +35,16 @@ namespace MindOrgenizerToDo.User
             }
         }
 
+        private void UserUpdateForm_Load(object sender, EventArgs e)
+        {
+            deletUserButton.Visible = UserSession.GetInstance().isUserAdmin(); //Hide it from non-admins
+            //fill the user name and email of the selected user
+            usernameTextBox.Text = UserSession.GetInstance().GetUserName((int)(selectUser()));
+            emailTextBox.Text = UserSession.GetInstance().GetUserEmail((int)(selectUser()));
+        }
+
         private long selectUser()
         {
-            
             long selectedUser;
             if (!UserSession.GetInstance().isUserAdmin())
             {
@@ -58,7 +58,7 @@ namespace MindOrgenizerToDo.User
             return selectedUser;
         }
 
-        //How do i pass the active user?
+        
         public UserUpdateForm(UserService userService)
         {
             this._userService = userService;
@@ -116,12 +116,6 @@ namespace MindOrgenizerToDo.User
             {
                 MessageBox.Show(response.StatusCode.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void UserUpdateForm_Load(object sender, EventArgs e)
-        {
-            deletUserButton.Visible = UserSession.GetInstance().isUserAdmin(); //Hide it from non-admins
-            //ToDo: pre-pull the data of selected user
         }
     }
 }

@@ -109,7 +109,7 @@ public class BubbleControl : UserControl
         {
             //ToDo: if combobox value is me, no need to show assignee label
             this.assigneeLabel.Name = "assigneeLabel";
-            this.assigneeLabel.Text = "Assigned to: " + UserSession.GetInstance().GetAssigneeNickname(Item.Assignee);
+            this.assigneeLabel.Text = "Assigned to: " + UserSession.GetInstance().GetUserName(Item.Assignee);
             this.assigneeLabel.TabIndex = 2;
 
             this.assigneeLabel.Size = new System.Drawing.Size(75, 18);

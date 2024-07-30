@@ -62,12 +62,20 @@ namespace MindOrgenizerToDo
             return instance;
         }
 
-        public string GetAssigneeNickname(int assigneeId)
+        public string GetUserName(int assigneeId)
         {
             if(assigneeId == 0) {return "no one";}
             string nickname = this.assignees.Find(x => x.Id == assigneeId).Name;
             return nickname;
         }
+
+        public string GetUserEmail(int assigneeId)
+        {
+            if (assigneeId == 0) { return "no one"; }
+            string email = this.assignees.Find(x => x.Id == assigneeId).Email; Console.WriteLine("getting email: " + email);
+            return email;
+        }
+
 
         public static WebApiClient GetClient()
         {

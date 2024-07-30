@@ -41,5 +41,10 @@ namespace MindOrgenizerToDo.ToDo.Connectors
             g.DrawLine(connectionPen, sourceCenter, targetCenter);
         }
 
+        public override string ToString()
+        {
+            return "Connection between " + Source.Name + " and " + Target.Name;
+        }
+
     }
 }
