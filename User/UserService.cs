@@ -87,8 +87,7 @@ namespace MindOrgenizerToDo.Services
 
         public static int ExtractUserID(string jsonString)
         {
-            Console.WriteLine("##################################################################################");
-            Console.WriteLine("ExtractUserID:");
+            Console.WriteLine("###################################| ExtractUserID |################################");
             Console.WriteLine(jsonString);
             try
             {
@@ -112,12 +111,13 @@ namespace MindOrgenizerToDo.Services
                 Console.WriteLine($"Error parsing JSON or extracting token: {ex.Message}");
                 return 0;
             }
+            finally
+            { Console.WriteLine("#################################################################################"); }
         }
 
         public static bool ExtractIsAdmin(string jsonString)
         {
-            Console.WriteLine("##################################################################################");
-            Console.WriteLine("ExtractIsAdmin:");
+            Console.WriteLine("#####################################| ExtractIsAdmin |###############################");
             Console.WriteLine(jsonString);
             try
             {
@@ -141,6 +141,8 @@ namespace MindOrgenizerToDo.Services
                 Console.WriteLine($"Error parsing JSON or extracting isAdmin: {ex.Message}");
                 return false;
             }
+            finally
+            { Console.WriteLine("#################################################################################"); }
         }
 
         public async Task<HttpResponseMessage> GetPossibleAssigns()
