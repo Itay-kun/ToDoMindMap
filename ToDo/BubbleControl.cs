@@ -5,7 +5,7 @@ using System.Drawing;
 using MindOrgenizerToDo;
 using System.Drawing.Drawing2D;
 using MindOrgenizerToDo.ToDo;
-using MindOrgenizerToDo.Services;
+
 
 
 public class BubbleControl : UserControl
@@ -15,6 +15,7 @@ public class BubbleControl : UserControl
     private Label assigneeLabel;
     private Label statusLabel;
     public int depth; // Depth in the hierarchy
+    
     public List<BubbleControl> ChildBubbles { get; private set; } // List to store child BubbleControls
 
     private bool isOverlapping { get; set; }
@@ -35,73 +36,93 @@ public class BubbleControl : UserControl
         RegisterEventHandlers();
     }
 
+    private void InitializeControl()
+    {
+        this.SuspendLayout();
+        // 
+        // BubbleControl
+        // 
+        this.AllowDrop = true;
+        this.AutoSize = true;
+        this.Name = "BubbleControl";
+        this.Size = new System.Drawing.Size(169, 147);
+        this.LocationChanged += new System.EventHandler(this.BubbleControl_LocationChanged);
+        this.DragDrop += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragDrop);
+        this.DragEnter += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragEnter);
+        this.DragOver += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragOver);
+        this.Paint += new System.Windows.Forms.PaintEventHandler(this.BubbleControl_Paint);
+        this.Move += new System.EventHandler(this.BubbleControl_Move);
+        this.ResumeLayout(false);
+    }
+
     private void InitializeControl(ToDoItem task)
     {
-         /*
-          * Console.WriteLine("BubbleControl | initializeControl | "+task.Title+" | Level: "+task.Level);
-       
-        // 
-        // Background
-        // 
-        this.Background = new System.Windows.Forms.Panel();
-        this.Background.BackColor = System.Drawing.Color.DarkKhaki;
-        this.Background.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-        this.Background.Location = new System.Drawing.Point(105, 18);
-        this.Background.Name = "Background";
-        this.Background.Padding = new System.Windows.Forms.Padding(3);
-        this.Background.Dock = System.Windows.Forms.DockStyle.Fill;
-        this.Background.Size = new System.Drawing.Size(42, 116);
-        this.Background.TabIndex = 0;*/
+        this.SuspendLayout();
 
-        this.assigneeLabel = new System.Windows.Forms.Label();
-        
         this.statusLabel = new System.Windows.Forms.Label();
-        //this.SuspendLayout();
+
+        Font defaultFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
         
-        
+        this.Height = 180;
+        this.Width = this.Height;
+
+        this.assigneeLabel = new System.Windows.Forms.Label
+        {
+            Padding = new System.Windows.Forms.Padding(30, this.Height / 3, 3, 0)
+        };
+    
+
         // 
         // titleLabel
         //
-        this.titleLabel = new System.Windows.Forms.Label();
-        this.titleLabel.Padding = new System.Windows.Forms.Padding(0, this.Height/3, 3, 0);
-        
-        this.Height = 147;
-        this.Width = this.Height;
-        
-        this.titleLabel.AutoSize = true;
-        this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-        this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+        this.titleLabel = new System.Windows.Forms.Label {
+            Padding = new System.Windows.Forms.Padding(30, this.Height / 3, 3, 0)
+        };
+
+
         this.titleLabel.Name = "titleLabel";
-        this.titleLabel.Size = new System.Drawing.Size(35, 18);
-        this.titleLabel.TabIndex = 1;
         this.titleLabel.Text = Item.Title;
+
+        this.titleLabel.Size = new System.Drawing.Size(35, 18);
+        this.titleLabel.AutoSize = true;
+
+        this.titleLabel.Font = defaultFont;
+        this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+        
+        this.titleLabel.TabIndex = 1;
+
 
         // 
         // assigneeLabel
         //
         if (UserSession.GetInstance().isUserAdmin())
         {
-            this.assigneeLabel.Text = "Assigned to: " + Item.Assignee.ToString();
-            this.assigneeLabel.AutoSize = true;
-            this.assigneeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.assigneeLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.assigneeLabel.Name = "assigneeLabel";
-            this.assigneeLabel.Size = new System.Drawing.Size(75, 18);
+            this.assigneeLabel.Text = "Assigned to: " + UserSession.GetInstance().GetAssigneeNickname(Item.Assignee);
             this.assigneeLabel.TabIndex = 2;
-            this.assigneeLabel.Text = "Assigned to: " + Item.Assignee.ToString(); //Add the assignee nickname instead?
+
+            this.assigneeLabel.Size = new System.Drawing.Size(75, 18);
+            this.assigneeLabel.AutoSize = true;
+            
+            this.assigneeLabel.Font = defaultFont;
+            this.assigneeLabel.Dock = System.Windows.Forms.DockStyle.Top;
+                        
             this.Controls.Add(this.assigneeLabel);
         }
-        
+
         // 
         // statusLabel
         // 
-        this.statusLabel.AutoSize = true;
-        this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-        this.statusLabel.Dock = System.Windows.Forms.DockStyle.Top;
         this.statusLabel.Name = "statusLabel";
-        this.statusLabel.Size = new System.Drawing.Size(54, 18);
-        this.statusLabel.TabIndex = 3;
         this.statusLabel.Text = "Status:" + Item.Status.ToString();
+        this.statusLabel.TabIndex = 3;
+
+        this.statusLabel.Size = new System.Drawing.Size(54, 18);
+        this.statusLabel.AutoSize = true;
+
+        this.statusLabel.Font = defaultFont;
+        this.statusLabel.Dock = System.Windows.Forms.DockStyle.Top;
+        
 
         // 
         // BubbleControl
@@ -115,26 +136,7 @@ public class BubbleControl : UserControl
         UpdateColorBasedOnStatus();
 
         this.PerformLayout();
-
-    }
-
-    public void AddChild(BubbleControl child)
-    {
-        MessageBox.Show("addChild");
-        Console.WriteLine("Add child");
-        child.depth = child.Item.Level;
-
-        int childXOffset = this.Width + 20*child.depth; // Start displaying child bubbles below the parent bubble
-        //TODO: replace 20 with a variable
-        //TODO: replace child y offset or remove it?
-
-        int childYOffset = 10 + ChildBubbles.Count * (child.Height + 10); // Start displaying child bubbles below the parent bubble
-        Console.WriteLine("Adding child: " + child.Item.Title + " to parent: " + Item.Title);
-
-        ChildBubbles.Add(child);
-        child.Location = new Point(childXOffset, childYOffset);  // Position child relative to parent
-        this.Controls.Add(child);
-        DrawArrow(this, child);
+        this.ResumeLayout();
     }
 
     private void RegisterEventHandlers()
@@ -219,37 +221,25 @@ public class BubbleControl : UserControl
     
     protected override void OnMouseDown(MouseEventArgs e)
     {
-        Console.WriteLine("BubbleControl | OnMouseDown");
+        Console.WriteLine();    Console.Write("BubbleControl | OnMouseDown");
         base.OnMouseDown(e);
+        
         // Start the drag only if the right part of the control is interacted with, if necessary
         // Begin the drag operation with this bubble as the source
         if (e.Button == MouseButtons.Middle)  // Check if the left button was pressed
         {
+            Console.Write(" | MiddleButton");   Console.WriteLine();
             this.DoDragDrop(this, DragDropEffects.Link);
-            //this.DoDragDrop(this, DragDropEffects.Move);
+        }
+        if (e.Button == MouseButtons.Right)
+        {
+            this.assigneeLabel.Text = "Assigned to: " + UserSession.GetInstance().GetAssigneeNickname(Item.Assignee);
         }
         this.BringToFront();
     }
     
 
-    private void InitializeComponent()
-    {
-            this.SuspendLayout();
-            // 
-            // BubbleControl
-            // 
-            this.AllowDrop = true;
-            this.AutoSize = true;
-            this.Name = "BubbleControl";
-            this.Size = new System.Drawing.Size(169, 147);
-            this.LocationChanged += new System.EventHandler(this.BubbleControl_LocationChanged);
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragDrop);
-            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragEnter);
-            this.DragOver += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragOver);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.BubbleControl_Paint);
-            this.Move += new System.EventHandler(this.BubbleControl_Move);
-            this.ResumeLayout(false);
-    }
+
     
 
     private void BubbleControl_DragEnter(object sender, DragEventArgs e)

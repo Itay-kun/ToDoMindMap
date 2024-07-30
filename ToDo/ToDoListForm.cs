@@ -28,6 +28,7 @@ namespace MindOrgenizerToDo
         Point mouseLoacation;
         HttpResponseMessage data;
         public ConnectionsManager connectionsManager;
+        
 
 
         public ToDoListForm(UserSession session)
@@ -387,7 +388,7 @@ namespace MindOrgenizerToDo
 
         public async void LoadAssignees()
         {
-            //Console.WriteLine("loading assignees: ");
+            //Console.WriteLine("loading assignees_list: ");
             try
             {
                 data = await userService.GetPossibleAssigns();
@@ -399,9 +400,11 @@ namespace MindOrgenizerToDo
                 };
 
                 var assignees = JsonSerializer.Deserialize<List<UserModel>>(json,options);
+                session.SetAssignees(assignees);
+
                 foreach (var assignee in assignees)
                 {
-                    //Console.WriteLine("assignee: " + assignee.ToString());
+                    Console.WriteLine("assignee: " + assignee.Name + "added");
                 }
 
                 assigneeComboBox.DisplayMember = "Name";

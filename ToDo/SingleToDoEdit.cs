@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Linq;
+using static System.Collections.Specialized.BitVector32;
 
 namespace MindOrgenizerToDo.ToDo
 {
@@ -191,6 +192,7 @@ namespace MindOrgenizerToDo.ToDo
 
                 //ToDo: check deserialization for if the user is an admin or not everywhere ther is a deserialization
                 var assignees = JsonSerializer.Deserialize<List<UserModel>>(json, options);
+                UserSession.GetInstance().SetAssignees(assignees);
                 foreach (var assignee in assignees)
                 {
                     Console.WriteLine("assignee: " + assignee.ToString());

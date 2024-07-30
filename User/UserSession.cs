@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MindOrgenizerToDo
 {
     public class UserSession
     {
         private static UserSession instance;
+
+        private List<UserModel> assignees;
 
         private static WebApiClient _client = new WebApiClient();
         private WebApiClient client;
@@ -22,6 +22,11 @@ namespace MindOrgenizerToDo
 
         public bool IsAdmin { get; set; } //Can be private?
 
+
+        /*
+            * initialize it: UserSession session = UserSession.GetInstance("user@example.com");
+            * access it: string email = UserSession.GetInstance().Email;
+        */
         private UserSession(string email)
         {
             Email = email;
@@ -57,10 +62,12 @@ namespace MindOrgenizerToDo
             return instance;
         }
 
-        /*public WebApiClient GetClient()
+        public string GetAssigneeNickname(int assigneeId)
         {
-            return client;
-        }*/
+            if(assigneeId == 0) {return "no one";}
+            string nickname = this.assignees.Find(x => x.Id == assigneeId).Name;
+            return nickname;
+        }
 
         public static WebApiClient GetClient()
         {
@@ -91,13 +98,17 @@ namespace MindOrgenizerToDo
             return id;
         }
 
+        public List<UserModel> GetAssignees()
+        {
+            return assignees;
+        }
+
+        public void SetAssignees(List<UserModel> assignees)
+        {
+            this.assignees = assignees;
+        }
         public string GetToken() { 
             return Token; 
         }
     }
-
-    /*
-     * initialize it: UserSession session = UserSession.GetInstance("user@example.com");
-     * access it: string email = UserSession.GetInstance().Email;
-     */
 }
