@@ -5,6 +5,7 @@ using System.Drawing;
 using MindOrgenizerToDo;
 using System.Drawing.Drawing2D;
 using MindOrgenizerToDo.ToDo;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 
@@ -45,7 +46,7 @@ public class BubbleControl : UserControl
         this.AllowDrop = true;
         this.AutoSize = true;
         this.Name = "BubbleControl";
-        this.Size = new System.Drawing.Size(169, 147);
+        this.Size = new System.Drawing.Size(200, 200);
         this.LocationChanged += new System.EventHandler(this.BubbleControl_LocationChanged);
         this.DragDrop += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragDrop);
         this.DragEnter += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragEnter);
@@ -58,8 +59,8 @@ public class BubbleControl : UserControl
     private void InitializeControl(ToDoItem task)
     {
         this.SuspendLayout();
+        this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 
-        this.statusLabel = new System.Windows.Forms.Label();
 
         Font defaultFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
         
@@ -68,7 +69,7 @@ public class BubbleControl : UserControl
 
         this.assigneeLabel = new System.Windows.Forms.Label
         {
-            Padding = new System.Windows.Forms.Padding(30, this.Height / 3, 3, 0)
+            Padding = new System.Windows.Forms.Padding(20, this.Height / 10, 0, this.Height / 10)
         };
     
 
@@ -76,27 +77,37 @@ public class BubbleControl : UserControl
         // titleLabel
         //
         this.titleLabel = new System.Windows.Forms.Label {
-            Padding = new System.Windows.Forms.Padding(30, this.Height / 3, 3, 0)
+            Name = "titleLabel",
+            Text = Item.Title,
+            Padding = new System.Windows.Forms.Padding(20, this.Height / 8, 0, this.Height / 10),
+            Size = new System.Drawing.Size(100, 18),
+            AutoSize = true,
+            Font = defaultFont,
+            Dock = System.Windows.Forms.DockStyle.Top,
+            TabIndex = 0
         };
-
-
-        this.titleLabel.Name = "titleLabel";
-        this.titleLabel.Text = Item.Title;
-
-        this.titleLabel.Size = new System.Drawing.Size(35, 18);
-        this.titleLabel.AutoSize = true;
-
-        this.titleLabel.Font = defaultFont;
-        this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
         
-        this.titleLabel.TabIndex = 1;
-
+        // 
+        // statusLabel
+        // 
+        this.statusLabel = new System.Windows.Forms.Label
+        {
+            Name = "statusLabel",
+            Text = "Status: " + task.Status.ToString(),
+            Padding = new System.Windows.Forms.Padding(30, this.Height / 10, 0, this.Height / 10),
+            Size = new System.Drawing.Size(100, 18),
+            AutoSize = true,
+            Font = defaultFont,
+            Dock = System.Windows.Forms.DockStyle.Top,
+            TabIndex = 1
+        };  
 
         // 
         // assigneeLabel
         //
         if (UserSession.GetInstance().isUserAdmin())
         {
+            //ToDo: if combobox value is me, no need to show assignee label
             this.assigneeLabel.Name = "assigneeLabel";
             this.assigneeLabel.Text = "Assigned to: " + UserSession.GetInstance().GetAssigneeNickname(Item.Assignee);
             this.assigneeLabel.TabIndex = 2;
@@ -105,24 +116,12 @@ public class BubbleControl : UserControl
             this.assigneeLabel.AutoSize = true;
             
             this.assigneeLabel.Font = defaultFont;
-            this.assigneeLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.assigneeLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
                         
             this.Controls.Add(this.assigneeLabel);
         }
 
-        // 
-        // statusLabel
-        // 
-        this.statusLabel.Name = "statusLabel";
-        this.statusLabel.Text = "Status:" + Item.Status.ToString();
-        this.statusLabel.TabIndex = 3;
-
-        this.statusLabel.Size = new System.Drawing.Size(54, 18);
-        this.statusLabel.AutoSize = true;
-
-        this.statusLabel.Font = defaultFont;
-        this.statusLabel.Dock = System.Windows.Forms.DockStyle.Top;
-        
+   
 
         // 
         // BubbleControl
@@ -204,6 +203,8 @@ public class BubbleControl : UserControl
 
     protected override void OnPaint(PaintEventArgs e)
     {
+        Console.WriteLine("BubbleControl | Override | OnPaint");
+        base.OnPaint(e);
         //Console.WriteLine("BubbleControl | OnPaint");
         base.OnPaint(e);
         Graphics graphics = e.Graphics;
@@ -233,7 +234,7 @@ public class BubbleControl : UserControl
         }
         if (e.Button == MouseButtons.Right)
         {
-            this.assigneeLabel.Text = "Assigned to: " + UserSession.GetInstance().GetAssigneeNickname(Item.Assignee);
+            this.Parent.CreateGraphics().MeasureString(this.assigneeLabel.Text, this.assigneeLabel.Font);
         }
         this.BringToFront();
     }

@@ -162,9 +162,9 @@ namespace MindOrgenizerToDo.ToDo
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Todo deleted successfully!");
-                    // Optionally refresh the UI here or close the form if necessary
-                     this.parentForm.updateUI();
-                     this.Close();  // Close the form if no longer needed
+                    //refresh the UI here or close the form if necessary
+                    this.parentForm.updateUI();
+                    this.Close();  // Close the form if no longer needed
                 }
                 else
                 {
