@@ -14,11 +14,13 @@ namespace MindOrgenizerToDo
         public LogInForm()
         {
             InitializeComponent();
+
+            //ToDo: maybe make those singeltons in session as well?
             _userService = new UserService("http://localhost:5000");
             _adminService = new AdminService("http://localhost:5000");
 
             // Prepopulate email and password
-            this.emailTextBox.Text = "itay.work.study@gmail.com";
+            this.emailTextBox.Text = "itay.work.study+nonadmin@gmail.com";
             this.passworddTextBox.Text = "1234";
         }
 
@@ -51,11 +53,6 @@ namespace MindOrgenizerToDo
                     
                     string responseString = await response.Content.ReadAsStringAsync();
                     bool isAdmin = UserService.ExtractIsAdmin(responseString);
-
-                    if (isAdmin)
-                    {
-                        //MessageBox.Show("Admin login successful!", "Response from Server", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
 
                     session.SetIsAdmin(isAdmin);
 
