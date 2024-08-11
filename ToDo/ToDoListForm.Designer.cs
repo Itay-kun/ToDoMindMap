@@ -59,8 +59,8 @@ namespace MindOrgenizerToDo
             this.stateComboBox = new System.Windows.Forms.ComboBox();
             this.updateUserInfoButton = new System.Windows.Forms.Button();
             this.bubblesPanel = new System.Windows.Forms.Panel();
-            this.userUpdateForm = new MindOrgenizerToDo.User.UserUpdateForm();
             this.bubblePanelBackground = new System.Windows.Forms.Panel();
+            this.userUpdateForm = new MindOrgenizerToDo.User.UserUpdateForm();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -272,13 +272,7 @@ namespace MindOrgenizerToDo
             this.bubblesPanel.AllowDrop = true;
             this.bubblesPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.bubblesPanel.Name = "bubblesPanel";
-            this.bubblesPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bubblesPanel_MouseMove);
-            // 
-            // userUpdateForm
-            // 
-            resources.ApplyResources(this.userUpdateForm, "userUpdateForm");
-            this.userUpdateForm.Name = "userUpdateForm";
-            this.userUpdateForm.VisibleChanged += new System.EventHandler(this.userUpdateForm_VisibleChanged);
+            this.bubblesPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.bubblesPanel_Scroll);
             // 
             // bubblePanelBackground
             // 
@@ -288,6 +282,12 @@ namespace MindOrgenizerToDo
             this.bubblePanelBackground.BackgroundImage = global::MindOrgenizerToDo.Properties.Resources.background;
             this.bubblePanelBackground.Controls.Add(this.bubblesPanel);
             this.bubblePanelBackground.Name = "bubblePanelBackground";
+            // 
+            // userUpdateForm
+            // 
+            resources.ApplyResources(this.userUpdateForm, "userUpdateForm");
+            this.userUpdateForm.Name = "userUpdateForm";
+            this.userUpdateForm.VisibleChanged += new System.EventHandler(this.userUpdateForm_VisibleChanged);
             // 
             // ToDoListForm
             // 

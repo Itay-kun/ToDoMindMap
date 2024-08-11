@@ -23,9 +23,9 @@ public class ConnectionsManager
         this.drawingPanel.Paint += RedrawConnections;
     }
 
-    public void AddConnection(BubbleControl source, BubbleControl target)
+    public Connection AddConnection(BubbleControl source, BubbleControl target)
     {
-        var connection = new Connection(source, target);
+        var connection = new Connection(source, target, drawingPanel);
         connections.Add(connection);
         drawingPanel.Invalidate(); // Trigger a repaint to show the new connection
         
@@ -34,6 +34,8 @@ public class ConnectionsManager
         Console.Write(connection.ToString());
         Console.Write("| Total of "+connections.Count+" connections.");
         Console.WriteLine();
+
+        return connection;
     }
 
     public void ConnectBubbles(BubbleControl source, BubbleControl target)

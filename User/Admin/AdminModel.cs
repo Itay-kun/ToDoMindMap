@@ -24,14 +24,6 @@ namespace MindOrganizerToDo
             return base.ToString() + $", AdminLevel: {AdminLevel}";
         }
 
-        public string ToJson()
-        {
-            // Serialize this AdminModel instance to JSON
-            return JsonSerializer.Serialize(this, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-        }
 
         public static new AdminModel FromJson(string json)
         {

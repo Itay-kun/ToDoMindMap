@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor User
+    participant ToDoListForm
+    participant TodoService
+    participant WebApiClient
+    participant Server
+    participant BubblesPanel
+
+    User->>ToDoListForm: Enter task details
+    User->>ToDoListForm: Click "Save" button
+    ToDoListForm->>ToDoListForm: Create ToDoItem object
+    ToDoListForm->>TodoService: CreateTodo(todoDataJson)
+    TodoService->>WebApiClient: Post(url, todoDataJson)
+    WebApiClient->>Server: HTTP POST /api/todo
+    Server-->>WebApiClient: HTTP Response
+    WebApiClient-->>TodoService: HttpResponseMessage
+    TodoService-->>ToDoListForm: HttpResponseMessage
+    ToDoListForm->>ToDoListForm: Update UI
+    ToDoListForm->>BubblesPanel: UpdateBubblesPanel()
+    BubblesPanel->>BubblesPanel: Create new BubbleControl
+    BubblesPanel->>BubblesPanel: Add connections if needed
+    BubblesPanel-->>ToDoListForm: UI updated
+    ToDoListForm-->>User: Display new task

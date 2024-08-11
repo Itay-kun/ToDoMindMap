@@ -5,13 +5,12 @@ using System.Drawing;
 using MindOrgenizerToDo;
 using System.Drawing.Drawing2D;
 using MindOrgenizerToDo.ToDo;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 
 public class BubbleControl : UserControl
 {
-    private Panel Background;
+    private readonly Panel Background;
     private Label titleLabel;
     private Label assigneeLabel;
     private Label statusLabel;
@@ -32,6 +31,7 @@ public class BubbleControl : UserControl
         this.ChildTasks = new List<ToDoItem>();
         this.AllowDrop = true;
         this.isOverlapping = false;
+        this.Hide();
 
         InitializeControl(item);
         RegisterEventHandlers();
@@ -53,7 +53,6 @@ public class BubbleControl : UserControl
         this.DragOver += new System.Windows.Forms.DragEventHandler(this.BubbleControl_DragOver);
         this.Paint += new System.Windows.Forms.PaintEventHandler(this.BubbleControl_Paint);
         this.Move += new System.EventHandler(this.BubbleControl_Move);
-        this.ResumeLayout(false);
     }
 
     private void InitializeControl(ToDoItem task)
@@ -131,11 +130,11 @@ public class BubbleControl : UserControl
         this.Controls.Add(this.titleLabel);
         
         this.Name = "Task "+Item.Id.ToString()+" Bubble";
-        this.ResumeLayout(false);
+        
         UpdateColorBasedOnStatus();
 
-        this.PerformLayout();
-        this.ResumeLayout();
+        //this.PerformLayout();
+        this.ResumeLayout(true);
     }
 
     private void RegisterEventHandlers()
@@ -283,7 +282,8 @@ public class BubbleControl : UserControl
         Console.WriteLine("draw arrow from "+source.Name + " to " + target.Name);
         var panel = this.Parent as Panel;
 
-        Graphics g = panel.CreateGraphics();
+        //Graphics g = panel.CreateGraphics();
+        Graphics g = source.CreateGraphics();
         Pen pen = new Pen(Color.Black, 2);
         pen.CustomEndCap = new AdjustableArrowCap(5, 5);
 

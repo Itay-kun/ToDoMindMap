@@ -12,7 +12,6 @@ namespace MindOrgenizerToDo
         private List<UserModel> assignees;
 
         private static WebApiClient _client = new WebApiClient();
-        private WebApiClient client;
 
         public static string Token { get; set; }
 
@@ -93,7 +92,7 @@ namespace MindOrgenizerToDo
 
         public void SetClient(WebApiClient webApiClient)
         {
-            client = webApiClient;
+            _client = webApiClient;
         }
 
         public void SetToken(string token)

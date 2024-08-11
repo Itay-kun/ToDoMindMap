@@ -21,7 +21,6 @@ namespace MindOrgenizerToDo
         TodoService todoService = UserSession.GetInstance().GetTodoService();
         UserService userService = UserSession.GetInstance().GetUserService();
         UserSession session;
-        Point mouseLoacation;
         HttpResponseMessage data;
         public ConnectionsManager connectionsManager;
         
@@ -129,7 +128,7 @@ namespace MindOrgenizerToDo
         private void LayoutBubbles(List<ToDoItem> tasks, Panel bubblesPanel)
         {
             // Define the necessary spacing and padding
-            int spaceBetweenUnrelatedTasks = 50;
+            int spaceBetweenUnrelatedTasks = 30;
             int bubblePadding = 10;
 
             // Clear existing controls
@@ -167,10 +166,12 @@ namespace MindOrgenizerToDo
                         Console.WriteLine("positioning child "+i+" of task "+task.Id); 
                         SetBubblePosition(childTasks[i], childX, childY);
 
-                        bubble.DrawArrowToTarget(childTasks[i].bubble);
+                        
+                        //if (!childTasks[i].bubble.Visible)    { connectionsManager.RemoveConnection(task.ToBubble(), childTasks[i].ToBubble()); }
 
                         //visually connect the children
                         connectionsManager.AddConnection(task.ToBubble(), childTasks[i].ToBubble());
+
 
                         childY += (childTasks.Count > 1 ? bubble.Height + spaceBetweenUnrelatedTasks : 0);
                     }
@@ -228,82 +229,24 @@ namespace MindOrgenizerToDo
 
                 bubble.Location = position;
                 bubblesPanel.Controls.Add(bubble);
-            }
-        }
-
-        private void LayoutBubbles(Control.ControlCollection bubbles)
-        {
-            Console.WriteLine("ToDoListForm | LayoutBubbles: " + bubbles.Count);
-            int yOffset = 10; // Initial top margin
-            int xOffset = 10; // Initial left margin
-            int padding = 30;
-
-            for (int i = 0; i < bubbles.Count; i++)
-            {
-                BubbleControl bubble = bubbles[i] as BubbleControl;
-                BubbleControl previousBubble = (i > 0) ? bubbles[i - 1] as BubbleControl : null;
-
-                bool isSameDepth = previousBubble != null && previousBubble.depth == bubble.depth;
-                Console.WriteLine("isSameDepth: " + isSameDepth);
-
-                if (isSameDepth)
-                {
-                    yOffset = (previousBubble.Location.Y) + previousBubble.Height;
-                    xOffset = 10;
-                }
-                else
-                {
-                    yOffset = 10;
-                    if (previousBubble != null)
-                    {
-                        Console.WriteLine(bubble.Location.Y.ToString() + " == " + previousBubble.Location.Y + " ? " + (bubble.Location.Y == previousBubble.Location.Y));
-                        xOffset = (int)bubble.depth * bubble.Width+padding;
-                    }
-                }
-
-                Point newLocation = new Point(xOffset, yOffset);
-
-                // Check if another bubble is already at the new location
-                bool locationOccupied = false;
-
-                
-                foreach (BubbleControl otherBubble in bubbles)
-                {
-                    if ((otherBubble != bubble) && (otherBubble.Location == newLocation))
-                    {
-                        locationOccupied = true;
-                        break;
-                    }
-                }
-
-                if (locationOccupied)
-                {
-                    yOffset += bubble.Height + 10;
-                    newLocation = new Point(xOffset, yOffset);
-                    //Console.WriteLine("location occupied at: " + newLocation);
-                }
-
-                bubble.Location = newLocation;
-                //Console.WriteLine("bubble location: " + bubble.Location);
-
-                // Always update yOffset for the next bubble
-                yOffset += bubble.Height + 10;
+                bubble.Show();
             }
             connectionsManager = new ConnectionsManager(bubblesPanel);
-            
-            bubblesPanel.Invalidate();
         }
 
         private void UpdateBubblesPanel(List<ToDoItem> todoList)
         {
-            bubblesPanel.Controls.Clear();
-
+            foreach (BubbleControl todo in bubblesPanel.Controls)
+            {
+                todo.Hide();
+            }
+            Console.WriteLine(); Console.WriteLine("#################### | ToDoListForm | UpdateBubblesPanel | ####################"); Console.WriteLine();
             // Create a dictionary to store the tasks by their ID for easy lookup
             Dictionary<long, BubbleControl> taskDict = new Dictionary<long, BubbleControl>();
 
             foreach (var todo in todoList)
             {
-                //Console.WriteLine();  Console.WriteLine("#################### | ToDoListForm | UpdateBubblesPanel | ####################"); Console.WriteLine();
+                Console.WriteLine("adding task: " + todo.ToJson());
                 Point newPoint = new Point(10, 10);
                 BubbleControl bubble = todo.ToBubble(newPoint);
                 bubble.TabIndex = (int)todo.Id;
@@ -378,6 +321,12 @@ namespace MindOrgenizerToDo
             else
             {
                 //ToDo: make sure usere selection combo box is visible and active
+                //ToDoListForm might be current form
+                if (this.assigneeComboBox.Visible)
+                {
+                    selectedUser = long.Parse(((ToDoListForm)this.ParentForm).assigneeComboBox.SelectedValue.ToString());
+                }
+                else
                 selectedUser = long.Parse(((ToDoListForm)this.ParentForm).assigneeComboBox.SelectedValue.ToString());
             }
             return selectedUser;
@@ -427,15 +376,13 @@ namespace MindOrgenizerToDo
             };
 
             List<ToDoItem> todoList = JsonSerializer.Deserialize<List<ToDoItem>>(json, options);
-            foreach (ToDoItem todo in todoList)
-            {
-                ToDoItem.ToDoList.Add(todo);
-            }
+
             UpdateBubblesPanel(todoList);
         }
 
         private async Task LoadAndDisplayCompletedTodos(Func<Task<HttpResponseMessage>> getTodosTask)
         {
+            Console.Clear();
             HttpResponseMessage data = await getTodosTask();
 
             string json = await data.Content.ReadAsStringAsync();
@@ -445,10 +392,16 @@ namespace MindOrgenizerToDo
                 Converters = { new JsonStringEnumConverter() }
             };
             List<ToDoItem> temp_list = JsonSerializer.Deserialize<List<ToDoItem>>(json, options);
+
+            //var assignee = UserSession.id;
+            //if(UserSession.GetInstance().IsAdmin) { assignee = (int)getSelectedUser(); };
+
             List<ToDoItem> todoList = temp_list.FindAll(x => x.Status == TodoStatus.COMPLETED);
+            if (!UserSession.GetInstance().isUserAdmin()) { todoList = todoList.FindAll(x => x.Assignee == UserSession.id); };
+
             foreach (ToDoItem todo in todoList)
             {
-               MessageBox.Show(todo.ToString());
+               Console.WriteLine("should add todo: " + todo.ToJson()+" to list "+todoList.Count.ToString());
             }
             UpdateBubblesPanel(todoList);
         }
@@ -476,18 +429,16 @@ namespace MindOrgenizerToDo
                     break;
                 case "Overdue":
                     await LoadAndDisplayTodos(() => todoService.GetOverdueTodos());
-                    bubblesPanel.Invalidate();
                     break;
                 case "For Today":
                     string dateAsJson = DateTime.Now.ToString("yyyy-MM-dd");
                     await LoadAndDisplayTodos(() => todoService.GetTodosForDate(dateAsJson));
-                    bubblesPanel.Invalidate();
                     break;
                 case "Completed":
                     await LoadAndDisplayCompletedTodos(() => todoService.GetAllTodos());
-                    bubblesPanel.Invalidate();
                     break;
             }
+            //bubblesPanel.Invalidate();
         }
 
         private async void todosDtateFilter_ValueChanged(object sender, EventArgs e)
@@ -548,7 +499,6 @@ namespace MindOrgenizerToDo
         private void userUpdateForm_VisibleChanged(object sender, EventArgs e)
         {
             bool isVisible = userUpdateForm.Visible;
-            MessageBox.Show("userUpdateForm is visible? " + isVisible);
             updateUserInfoButton.Enabled = !isVisible;
             updateUserInfoButton.Visible = !isVisible;
         }
@@ -560,23 +510,12 @@ namespace MindOrgenizerToDo
             updateUserInfoButton.Visible = isVisible;
         }
 
-        private void DrawArrow(Graphics g, Control source, Control target)
+        private void bubblesPanel_Scroll(object sender, ScrollEventArgs e)
         {
-            if (source == null || target == null) return;
-
-            Point sourcePoint = new Point(source.Right, source.Top + source.Height / 2);
-            Point targetPoint = new Point(target.Left, target.Top + target.Height / 2);
-
-            using (Pen pen = new Pen(Color.Black, 2))
-            {
-                pen.CustomEndCap = new AdjustableArrowCap(5, 5);
-                g.DrawLine(pen, sourcePoint, targetPoint);
+            if (e.OldValue != e.NewValue)
+            {   
+                //ToDo: Move the arrows by or remove them based on the new scroll location?
             }
-        }
-
-        private void bubblesPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            mouseLoacation = e.Location;
         }
     }
 }

@@ -8,23 +8,18 @@ namespace MindOrgenizerToDo
 {
     public partial class LogInForm : Form
     {
-        private UserService _userService;
-        private AdminService _adminService;
+        readonly private UserService _userService;
 
         public LogInForm()
         {
             InitializeComponent();
+            emailTextBox.Focus();
 
-            //ToDo: maybe make those singeltons in session as well?
             _userService = new UserService("http://localhost:5000");
-            _adminService = new AdminService("http://localhost:5000");
 
-            // Prepopulate email and password
-            this.emailTextBox.Text = "itay.work.study+nonadmin@gmail.com";
-            this.passworddTextBox.Text = "1234";
         }
 
-        private JsonObject getFieldsAsJson()
+        private JsonObject GetFieldsAsJson()
         {
             JsonObject user_info = new JsonObject
             {
@@ -36,7 +31,7 @@ namespace MindOrgenizerToDo
             return user_info;
         }
 
-        private async void loginButton_Click(object sender, EventArgs e)
+        private async void LoginButton_Click(object sender, EventArgs e)
         {
             //todo: check somehow if the server is running!
             try
@@ -47,7 +42,7 @@ namespace MindOrgenizerToDo
                 //TODO: Add error handling for when server is not running, maybe ping the server on app start?
                 if (response.IsSuccessStatusCode)
                 {
-                    this.loginButton.Enabled = false;
+                    this.LoginButton.Enabled = false;
                     this.WindowState = FormWindowState.Minimized;
                     UserSession session = UserSession.GetInstance(emailTextBox.Text);
                     
@@ -84,7 +79,7 @@ namespace MindOrgenizerToDo
             }
         }
 
-        private async void registerButton_Click(object sender, EventArgs e)
+        private async void RegisterButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Registering user...");
             try
@@ -114,22 +109,22 @@ namespace MindOrgenizerToDo
             userInfoPanel.BackColor = Color.FromArgb(150, 10, 10, 10);
         }
 
-        private void textBoxUserName_TextChanged(object sender, EventArgs e)
+        private void TextBoxUserName_TextChanged(object sender, EventArgs e)
         {
             bool canRegister = (textBoxUserName.Text.Trim().Length > 0);
-            registerButton.Enabled = canRegister;
+            RegisterButton.Enabled = canRegister;
         }
 
-        private void textBoxUserName_Enter(object sender, EventArgs e)
+        private void TextBoxUserName_Enter(object sender, EventArgs e)
         {
             bool canRegister = (textBoxUserName.Text.Trim().Length > 0);
-            registerButton.Enabled = canRegister;
+            RegisterButton.Enabled = canRegister;
         }
 
-        private void textBoxUserName_Leave(object sender, EventArgs e)
+        private void TextBoxUserName_Leave(object sender, EventArgs e)
         {
             bool canRegister = (textBoxUserName.Text.Trim().Length > 0);
-            registerButton.Enabled = canRegister;
+            RegisterButton.Enabled = canRegister;
         }
     }
 }

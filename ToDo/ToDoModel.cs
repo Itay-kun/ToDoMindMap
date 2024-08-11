@@ -54,8 +54,6 @@ namespace MindOrgenizerToDo
         [JsonPropertyName("level")]
         public int Level { get; set; }
 
-        public static List<ToDoItem> ToDoList { get; set; } = new List<ToDoItem>();
-
         public BubbleControl bubble { get; set; }
 
         public ToDoItem(long id, long parentTaskId, string title, string description, DateTime startDate, DateTime dueDate, DateTime endDate, int assignee, int level = 0, TodoStatus status = TodoStatus.TODO, String tags = "")
@@ -71,8 +69,6 @@ namespace MindOrgenizerToDo
             EndDate = endDate;
             Status = status; //Initialize the task as not compleated
             Level = level;
-
-            Console.WriteLine("Created: "+this.ToString());
         }
 
         public override string ToString()
@@ -86,12 +82,13 @@ namespace MindOrgenizerToDo
         {
             if (this.bubble != null)
             {
-                MessageBox.Show("Bubble already created at location: "+this.bubble.Location);
+                //MessageBox.Show("Bubble already created at location: "+this.bubble.Location);
                 return this.bubble;
             }
             else
             {
-                return new BubbleControl(this, new Point(0, 0));
+                this.bubble = new BubbleControl(this, new Point(0, 0));
+                return this.bubble;
             }
         }
 

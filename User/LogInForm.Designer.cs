@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInForm));
-            this.loginButton = new System.Windows.Forms.Button();
+            this.LoginButton = new System.Windows.Forms.Button();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.passworddTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -41,24 +41,24 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.userInfoPanel = new System.Windows.Forms.Panel();
             this.TitleLabel = new System.Windows.Forms.Label();
-            this.registerButton = new System.Windows.Forms.Button();
+            this.RegisterButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.userInfoPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // loginButton
+            // LoginButton
             // 
-            this.loginButton.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.loginButton.Location = new System.Drawing.Point(205, 275);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(93, 37);
-            this.loginButton.TabIndex = 5;
-            this.loginButton.Text = "Login";
-            this.loginButton.UseVisualStyleBackColor = false;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            this.LoginButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.LoginButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LoginButton.Location = new System.Drawing.Point(205, 275);
+            this.LoginButton.Name = "LoginButton";
+            this.LoginButton.Size = new System.Drawing.Size(93, 37);
+            this.LoginButton.TabIndex = 5;
+            this.LoginButton.Text = "Login";
+            this.LoginButton.UseVisualStyleBackColor = false;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // emailTextBox
             // 
@@ -75,9 +75,9 @@
             this.textBoxUserName.Size = new System.Drawing.Size(205, 20);
             this.textBoxUserName.TabIndex = 2;
             this.textBoxUserName.Tag = "username";
-            this.textBoxUserName.TextChanged += new System.EventHandler(this.textBoxUserName_TextChanged);
-            this.textBoxUserName.Enter += new System.EventHandler(this.textBoxUserName_Enter);
-            this.textBoxUserName.Leave += new System.EventHandler(this.textBoxUserName_Leave);
+            this.textBoxUserName.TextChanged += new System.EventHandler(this.TextBoxUserName_TextChanged);
+            this.textBoxUserName.Enter += new System.EventHandler(this.TextBoxUserName_Enter);
+            this.textBoxUserName.Leave += new System.EventHandler(this.TextBoxUserName_Leave);
             // 
             // passworddTextBox
             // 
@@ -167,9 +167,9 @@
             this.userInfoPanel.Controls.Add(this.TitleLabel);
             this.userInfoPanel.Controls.Add(this.panel2);
             this.userInfoPanel.Controls.Add(this.panel3);
-            this.userInfoPanel.Controls.Add(this.registerButton);
+            this.userInfoPanel.Controls.Add(this.RegisterButton);
             this.userInfoPanel.Controls.Add(this.panel1);
-            this.userInfoPanel.Controls.Add(this.loginButton);
+            this.userInfoPanel.Controls.Add(this.LoginButton);
             this.userInfoPanel.Location = new System.Drawing.Point(85, 71);
             this.userInfoPanel.Name = "userInfoPanel";
             this.userInfoPanel.Size = new System.Drawing.Size(396, 371);
@@ -192,21 +192,21 @@
             this.TitleLabel.Text = "Log In / Register";
             this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // registerButton
+            // RegisterButton
             // 
-            this.registerButton.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.registerButton.Enabled = false;
-            this.registerButton.Location = new System.Drawing.Point(87, 275);
-            this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(90, 37);
-            this.registerButton.TabIndex = 4;
-            this.registerButton.Text = "Register";
-            this.registerButton.UseVisualStyleBackColor = false;
-            this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
+            this.RegisterButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.RegisterButton.Enabled = false;
+            this.RegisterButton.Location = new System.Drawing.Point(87, 275);
+            this.RegisterButton.Name = "RegisterButton";
+            this.RegisterButton.Size = new System.Drawing.Size(90, 37);
+            this.RegisterButton.TabIndex = 4;
+            this.RegisterButton.Text = "Register";
+            this.RegisterButton.UseVisualStyleBackColor = false;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
             // LogInForm
             // 
-            this.AcceptButton = this.loginButton;
+            this.AcceptButton = this.LoginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::MindOrgenizerToDo.Properties.Resources.background;
@@ -232,7 +232,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.MaskedTextBox passworddTextBox;
@@ -244,6 +244,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel userInfoPanel;
         private System.Windows.Forms.Label TitleLabel;
-        private System.Windows.Forms.Button registerButton;
+        private System.Windows.Forms.Button RegisterButton;
     }
 }

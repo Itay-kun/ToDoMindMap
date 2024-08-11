@@ -1,0 +1,20 @@
+sequenceDiagram
+    actor User
+    participant LoginForm
+    participant UserService
+    participant WebApiClient
+    participant Server
+
+    User->>LoginForm: Enter credentials
+    LoginForm->>UserService: LoginUser(email, password)
+    UserService->>WebApiClient: SendRequestAsync(URL, "POST", jsonData)
+    WebApiClient->>Server: HTTP POST /api/user/login
+    Server-->>WebApiClient: HTTP Response
+    WebApiClient-->>UserService: HttpResponseMessage
+    UserService-->>LoginForm: HttpResponseMessage
+    LoginForm->>LoginForm: Extract token and user info
+    LoginForm->>UserSession: SetToken(token)
+    LoginForm->>UserSession: SetUserID(userID)
+    LoginForm->>UserSession: SetIsAdmin(isAdmin)
+    LoginForm->>ToDoListForm: Show()
+    LoginForm-->>User: Display main application window
