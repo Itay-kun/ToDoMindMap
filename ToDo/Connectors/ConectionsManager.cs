@@ -59,7 +59,7 @@ public class ConnectionsManager
     {
         foreach (Connection connection in connections)
         {
-            Console.WriteLine("Redrawing "+connection.ToString());
+            //Console.WriteLine("Redrawing "+connection.ToString());
             connection.Draw(g);
         }
     }

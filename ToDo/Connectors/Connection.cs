@@ -21,8 +21,6 @@ namespace MindOrgenizerToDo.ToDo.Connectors
             }
         }
 
-
-
         private Graphics g { get; set; }
 
         private Pen connectionPen;
@@ -39,22 +37,19 @@ namespace MindOrgenizerToDo.ToDo.Connectors
             connectionPen = new Pen(Color.Black, 2) { CustomEndCap = new AdjustableArrowCap(5, 5) };
             if (Source.Parent == null) return;
 
-            IsVisible = false;
+            this.IsVisible = false;
         }
 
         public void Draw(Graphics g)
         {
             if (Source == null || Target == null) return;
-            if (IsVisible) { Console.WriteLine("connection between " + Source.Name + " and " + Target.Name+" is visible"); return; }
             Source.Item.bubble = Source.Item.ToBubble();
-            Console.WriteLine("Connection.Draw()");
             Console.WriteLine(Source.Visible + " " + Target.Visible);
             
             if (ShouldBeVisible && !IsVisible)
             {
             this.g = g ?? Source.CreateGraphics();
             if (g == null) { Console.ForegroundColor = System.ConsoleColor.Red; Console.WriteLine("graphic context is null"); }
-            //Console.WriteLine("Redrawing connection between " + Source.Name + " and " + Target.Name);
 
 
                 Point sourceCenter = Source.GetCenterPoint();
@@ -62,8 +57,12 @@ namespace MindOrgenizerToDo.ToDo.Connectors
 
                 g.DrawLine(connectionPen, sourceCenter, targetCenter);
 
-                IsVisible = true;
+                this.IsVisible = true;
             }
+            else {
+                this.IsVisible = false;
+            }
+            if (IsVisible) { Console.WriteLine("connection between " + Source.Name + " and " + Target.Name + " is visible"); return; }
         }
 
         public override string ToString()

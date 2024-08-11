@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
@@ -23,7 +22,8 @@ namespace MindOrgenizerToDo
         UserSession session;
         HttpResponseMessage data;
         public ConnectionsManager connectionsManager;
-        
+        private System.Windows.Forms.Timer scrollTimer;
+
 
 
         public ToDoListForm(UserSession session)
@@ -32,6 +32,10 @@ namespace MindOrgenizerToDo
             InitializeComponent();
             DoubleBuffered = true;
             this.AllowDrop = true;
+
+            scrollTimer = new System.Windows.Forms.Timer();
+            scrollTimer.Interval = 100; // 100 milliseconds delay
+            scrollTimer.Tick += ScrollTimer_Tick;
 
             connectionsManager = new ConnectionsManager(bubblesPanel);
 
@@ -512,10 +516,23 @@ namespace MindOrgenizerToDo
 
         private void bubblesPanel_Scroll(object sender, ScrollEventArgs e)
         {
-            if (e.OldValue != e.NewValue)
-            {   
-                //ToDo: Move the arrows by or remove them based on the new scroll location?
+            Console.Clear(); Console.WriteLine(e.Type.ToString());
+
+            //if (e.Type == ScrollEventType.EndScroll)
+            if(e.OldValue == e.NewValue)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Scrolling end");
+                Console.WriteLine("");
+                scrollTimer.Stop();
+                scrollTimer.Start();
             }
+        }
+
+        private void ScrollTimer_Tick(object sender, EventArgs e)
+        {
+            scrollTimer.Stop();
+            bubblesPanel.Invalidate();
         }
     }
 }
