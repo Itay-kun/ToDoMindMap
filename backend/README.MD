@@ -8,6 +8,16 @@ To start the server, you must first install the dependencies by running the foll
 npm install
 ```
 
+Then, go to db.js and change the following lines to match your MySQL configuration:
+```
+const pool = mysql.createPool({
+    host: 'localhost
+    user: [YOUR USERNAME],
+    password: [YOUR PASSWORD]
+    database: 'todo'
+});
+```
+
 Then you can start the server by running the following command:
 ```
 npm start
